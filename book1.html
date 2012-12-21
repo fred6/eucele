@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+            window.onload = function() {
+                var r = Raphael("canvas", 600, 400);
+
+                function draw_point(x, y) {
+                    return r.circle(x, y, 2).attr({fill: "#000"});
+                };
+
+                function circ_from_seg(seg, endpoint) {
+                    var pt;
+
+                    if(endpoint === "a") {
+                        pt = seg.getPointAtLength(0);
+                    } else {
+                        pt = seg.getPointAtLength(999999);
+                    }
+
+                    var len = seg.getTotalLength();
+
+                    return r.circle(pt.x, pt.y, len).attr({"stroke-width": 1});
+                };
+
+                function circles_intersection(c1, c2) {
+                    var Lcirc, Rcirc;
+
+                    if(c1.attrs.cx <= c2.attrs.cx) {
+                        Lcirc = c1;
+                        Rcirc = c2;
+                    } else {
+                        Lcirc = c2;
+                        Rcirc = c1;
+                    }
+
+                    var Lcx = Lcirc.attrs.cx,
+                        Lcy = Lcirc.attrs.cy,
+                        Lcr = Lcirc.attrs.r,
+                        Rcx = Rcirc.attrs.cx,
+                        Rcy = Rcirc.attrs.cy,
+                        Rcr = Rcirc.attrs.r,
+                        btwn_cntrs = r.path("M"+Lcx+","+Lcy+"L"+Rcx+","+Rcy).hide();
+                        //len = Math.sqrt(Math.pow(c2x - c1x, 2), Math.pow(c2y - c1y, 2));
+
+                    // x^2 + y^2 = R^2
+                    // (x-d)^2 + y^2 = r^2
+                    // solve for x:
+                    //
+                    // (x-d)^2 - x = r^2 - R^2
+                    // x = (d^2 - r^2 + R^2) / 2d
+                    //
+                    // Plug it back into the first equation to get y
+                    // Note that this is from the reference frame that assumes
+                    // the left-most circle is the origin
+                    // and the x-axis is along the line between the circle centers
+                    // so once we get x, y
+
+                    var d = btwn_cntrs.getTotalLength();
+
+                    var inter_x = (Math.pow(d,2) - Math.pow(Rcr,2) + Math.pow(Lcr, 2)) / (2*d);
+                    var inter_y = Math.sqrt(Math.pow(Lcr, 2) - Math.pow(inter_x, 2));
+
+                    var cLinePt = btwn_cntrs.getPointAtLength(inter_x);
+                    draw_point(cLinePt.x, cLinePt.y);
+
+                    var cLineAng = Raphael.angle(Rcx, Rcy,
+                                                        Lcx, Lcy);
+
+                    var cAng = Raphael.rad(cLineAng);
+
+                    var inter_pt_offset = {x: Math.sin(cAng)*inter_y,
+                                           y: Math.cos(cAng)*inter_y};
+
+                   var inter_pt = {x: cLinePt.x + inter_pt_offset.x,
+                                   y: cLinePt.y - inter_pt_offset.y};
+
+
+                    /*
+                    var inter_line_str = "M"+cLinePt.x+","
+                                         +cLinePt.y+
+                                         "L"+cLinePt.x+","
+                                         +(cLinePt.y - inter_y);
+
+                    // hidden line from pt_along_center_line to intersection
+                    var inter_line = r.path(inter_line_str).transform("r"+cLineAng+","+cLinePt.x+","+cLinePt.y);
+                    */
+
+                    return draw_point(inter_pt.x, inter_pt.y);
+
+                };
+
+                var ls = r.path("M150, 180.5L190,280.5").attr({"stroke-width": 1});
+
+                var c1 = circ_from_seg(ls, "a");
+                var c2 = circ_from_seg(ls, "b");
+                var intersection = circles_intersection(c1, c2);
+            };
+        </script>
+    </head>
+    <body>
+        <div id="canvas"></div>
+        <script src="lib/raphael-min.js"></script>
+    </body>
+
+</html>
