@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <script>
             console.log('#############################################');
-            console.log('#############################################');
             window.onload = function() {
                 var r = Raphael("canvas", 600, 400);
                 var euc = euclib(Raphael, r);
@@ -13,6 +12,8 @@
                     B = new euc.Point(220, 180.5);
                 var seg = new euc.Segment(A, B);
                 seg.draw();
+
+                //start of construction
 
                 var c1 = euc.CircFromSeg(seg, "A"),
                     c2 = euc.CircFromSeg(seg, "B");
