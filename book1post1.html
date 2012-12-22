@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+            console.log('#############################################');
+            console.log('#############################################');
+            window.onload = function() {
+                var r = Raphael("canvas", 600, 400);
+                var euc = euclib(Raphael, r);
+
+                var A = new euc.Point(150, 180.5),
+                    B = new euc.Point(220, 180.5);
+                var seg = new euc.Segment(A, B);
+                seg.draw();
+
+                var c1 = euc.CircFromSeg(seg, "A"),
+                    c2 = euc.CircFromSeg(seg, "B");
+
+                c1.draw();
+                c2.draw();
+
+                var inter = euc.FindCircsIntersection(c1,c2);
+                inter.draw();
+
+                var Lside = new euc.Segment(A, inter),
+                    Rside = new euc.Segment(B, inter);
+                Lside.draw();
+                Rside.draw();
+
+            };
+        </script>
+    </head>
+    <body>
+        <div id="canvas"></div>
+        <script src="js/euclib.js"></script>
+        <script src="js/raphael-min.js"></script>
+    </body>
+
+</html>
