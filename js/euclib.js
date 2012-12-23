@@ -1,6 +1,8 @@
 // TODO: sub Segments?
 
 (function(global, undefined) {
+    "use strict";
+
     // TODO: test if this is there (i.e. don't just assume, handle it
     // when it's not there)
     var Raphael = global.Raphael;
@@ -81,7 +83,7 @@
     // the idea is that instead of having a separate triangle object, im just going
     // to have a proposition function return a group of segments.
     pub.EleGroup = function(eles) {
-        for(ele in eles) {
+        for(var ele in eles) {
             this[ele] = eles[ele];
         }
     };
