@@ -14,6 +14,14 @@
 
     /*** Objects ***/
 
+    // but this is very much a temporary thing until I understand a better
+    // way to pass this in
+    var r = Raphael("canvas", 600, 400);
+
+    var public = {};
+
+    /*** Objects ***/
+
     public.Point = function(x, y) {
         this.x = x;
         this.y = y;
