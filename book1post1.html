@@ -2,11 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <script src="js/raphael-min.js"></script>
         <script>
             console.log('#############################################');
             window.onload = function() {
-                var r = Raphael("canvas", 600, 400);
-                var euc = euclib(Raphael, r);
+                var euc = euclib;
 
                 var A = new euc.Point(150, 180.5),
                     B = new euc.Point(220, 180.5);
@@ -15,13 +15,13 @@
 
                 //start of construction
 
-                var c1 = euc.CircFromSeg(seg, "A"),
-                    c2 = euc.CircFromSeg(seg, "B");
+                var c1 = euc.circFromSeg(seg, "A"),
+                    c2 = euc.circFromSeg(seg, "B");
 
                 c1.draw();
                 c2.draw();
 
-                var inter = euc.FindCircsIntersection(c1,c2);
+                var inter = euc.findCircsIntersection(c1,c2);
                 inter.draw();
 
                 var Lside = new euc.Segment(A, inter),
@@ -35,7 +35,6 @@
     <body>
         <div id="canvas"></div>
         <script src="js/euclib.js"></script>
-        <script src="js/raphael-min.js"></script>
     </body>
 
 </html>

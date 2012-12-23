@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="js/raphael-min.js"></script>
+        <script>
+            console.log('#############################################');
+            window.onload = function() {
+                var euc = euclib;
+
+                var A = new euc.Point(150, 180.5),
+                    B = new euc.Point(220, 220.5),
+                    C = new euc.Point(260, 170.5);
+
+                var seg = new euc.Segment(A, B);
+
+                seg.draw();
+                C.draw();
+
+                // start of construction
+                var seg1 = new euc.Segment(B, C);
+                seg1.draw();
+
+                var eqtri = euc.Prop1(seg1);
+                eqtri.draw();
+
+                // now make the circle based on the original given seg
+                var seg_circ = euc.circFromSeg(seg, "B");
+                seg_circ.draw();
+
+
+                //extend the other side of the equilateral triangle
+                var ext_seg = euc.extendSegment(eqtri.sideA, "B", seg.length + 30, 1);
+                ext_seg.draw();
+
+
+                //find intersection of circle and extended line
+                var interpt = euc.findCircCenterSegIntersection(seg_circ, ext_seg);
+
+                // the other point in the eq tri (not B or C)
+                var eqtri_otherpt = eqtri.sideA.A;
+
+
+                // line from other point of the eqtri to the intersection of the
+                // extension and the circle
+                var ext_inter_seg = new euc.Segment(eqtri_otherpt, interpt);
+
+                var ext_inter_seg_circ = euc.circFromSeg(ext_inter_seg, "A");
+                ext_inter_seg_circ.draw();
+
+                // extend the remaining side of the eq tri
+                var last_ext_seg = euc.extendSegment(eqtri.sideB, "B", seg.length + 30, 1) ;
+                last_ext_seg.draw();
+
+                // find intersection of the newest circle and the last_ext_seg
+                var inter2pt = euc.findCircCenterSegIntersection(ext_inter_seg_circ, last_ext_seg);
+                inter2pt.draw();
+            };
+        </script>
+    </head>
+    <body>
+        <div id="canvas"></div>
+        <script src="js/euclib.js"></script>
+    </body>
+
+</html>

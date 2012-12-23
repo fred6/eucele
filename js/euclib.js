@@ -1,7 +1,18 @@
-var euclib = function(Raphael, raph) {
-  return (function(Raphael, r, undefined) {
+// TODO: sub Segments?
+
+(function(global, undefined) {
+    // TODO: test if this is there (i.e. don't just assume, handle it
+    // when it's not there)
+    var Raphael = global.Raphael;
+
+    // for now we require a div with id canvas to be setup on HTML page
+    // but this is very much a temporary thing until I understand a better
+    // way to pass this in
+    var r = Raphael("canvas", 600, 400);
 
     var public = {};
+
+    /*** Objects ***/
 
     public.Point = function(x, y) {
         this.x = x;
@@ -9,7 +20,8 @@ var euclib = function(Raphael, raph) {
     };
 
     public.Point.prototype.draw = function() {
-        this.display = r.circle(this.x, this.y, 2).attr({fill: "#000"});
+        if(!this.display)
+            this.display = r.circle(this.x, this.y, 2).attr({fill: "#000"});
     };
 
     public.Segment = function(pt1, pt2) {
@@ -31,7 +43,26 @@ var euclib = function(Raphael, raph) {
             return pt.x+", "+pt.y;
         };
 
-        this.display = r.path("M"+pt2String(this.A)+"L"+pt2String(this.B));
+        if(!this.display)
+            this.display = r.path("M"+pt2String(this.A)+"L"+pt2String(this.B));
+    };
+
+    // get change from A to B
+    public.Segment.prototype.getChangePerLength = function(coord) {
+        if(coord === "x") {
+            return (this.B.x - this.A.x) / this.length;
+        } else {
+            return (this.B.y - this.A.y) / this.length;
+        }
+    };
+
+    
+    public.Segment.prototype.drawA = function() {
+        this.A.draw();
+    };
+
+    public.Segment.prototype.drawB = function() {
+        this.B.draw();
     };
 
     public.Circle = function(point, rad) {
@@ -43,10 +74,33 @@ var euclib = function(Raphael, raph) {
 
 
     public.Circle.prototype.draw = function() {
-        this.display = r.circle(this.cx, this.cy, this.rad);
+        if(!this.display)
+            this.display = r.circle(this.cx, this.cy, this.rad);
     };
 
-    public.CircFromSeg = function(segment, endpoint) {
+
+    // the idea is that instead of having a separate triangle object, im just going
+    // to have a proposition function return a group of segments.
+    public.EleGroup = function(eles) {
+        for(ele in eles) {
+            this[ele] = eles[ele];
+        }
+    };
+
+
+    public.EleGroup.prototype.draw = function() {
+        for(var ele in this) {
+            if(this.hasOwnProperty(ele)) {
+                this[ele].draw();
+            }
+        }
+    };
+
+
+    /*** Utility funcitons ***/
+
+
+    public.circFromSeg = function(segment, endpoint) {
         if(endpoint === "A") {
             return new public.Circle(segment.A, segment.length);
         } else {
@@ -54,7 +108,28 @@ var euclib = function(Raphael, raph) {
         }
     };
 
-    public.FindCircsIntersection = function(circ1, circ2) {
+    // The idea is to return just the extension segment, not a segment
+    // that includes both the extension and the original segment
+    //
+    // direction = 1 means A --> B, -1 means B --> A
+    public.extendSegment = function(segment, endpoint, length, direction) {
+        var segpt;
+        if(endpoint === "A") {
+            segpt = segment.A;
+        } else {
+            segpt = segment.B;
+        }
+        
+        var y_inc = direction * segment.getChangePerLength("y") * length;
+        var x_inc = direction * segment.getChangePerLength("x") * length;
+        var extendpt = new public.Point(segpt.x + x_inc, segpt.y + y_inc);
+
+        return new public.Segment(segpt, extendpt)
+
+    };
+
+
+    public.findCircsIntersection = function(circ1, circ2) {
         var Lcirc, Rcirc;
 
         if(circ1.cx <= circ2.cx) {
@@ -102,6 +177,8 @@ var euclib = function(Raphael, raph) {
 
         var cLinePt = new public.Point(cLineX, cLineY);
 
+        // finally get the coords of the top intersection (since there are
+        // generally two)
         var interPtX = cLinePt.x + y*Math.sin(cLineAng),
             interPtY = cLinePt.y - y*Math.cos(cLineAng);
 
@@ -110,7 +187,46 @@ var euclib = function(Raphael, raph) {
         return interPt;
     };
 
-    return public;
 
-  })(Raphael, raph);
-};
+    // finds intersection of circle and segment for a segment passing
+    // through the center of the circle
+    public.findCircCenterSegIntersection = function(circ, seg) {
+        // find change per length of the segment, then
+        // multiply by the radius of the circle to find the change
+        // from circle to intersection
+        var interY = circ.cy + circ.rad * seg.getChangePerLength("y"),
+            interX = circ.cx + circ.rad * seg.getChangePerLength("x");
+
+        return new public.Point(interX, interY);
+
+    };
+
+
+
+    /*** Proposition logic ***/
+
+
+    // Prop1 - takes a segment, returns an equilateral triangle with the segment
+    // as one of the sides
+    public.Prop1 = function(seg) {
+        var c1 = public.circFromSeg(seg, "A"),
+            c2 = public.circFromSeg(seg, "B");
+        var inter = public.findCircsIntersection(c1,c2);
+
+        var Aside = new public.Segment(seg.A, inter),
+            Bside = new public.Segment(seg.B, inter);
+
+        return new public.EleGroup(
+            {
+                orig: seg,
+                sideA: Aside,
+                sideB: Bside
+            });
+
+    };
+
+    // register globally
+    global.euclib = public;
+
+})(this);
+
