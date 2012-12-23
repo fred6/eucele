@@ -21,8 +21,10 @@
     };
 
     pub.Point.prototype.draw = function() {
-        if ( !this.display )
-            this.display = r.circle(this.x, this.y, 2).attr({fill: "#000"});
+        if ( !this.display ) {
+            var attr = {fill: "#000"};
+            this.display = r.circle(this.x, this.y, 2).attr(attr);
+        }
     };
 
     pub.Segment = function( pt1, pt2 ) {
@@ -39,13 +41,20 @@
                                 Math.pow(this.B.y - this.A.y, 2));
     };
 
-    pub.Segment.prototype.draw = function() {
+    pub.Segment.prototype.draw = function(stroke) {
         var pt2String = function( pt ) {
             return pt.x+", "+pt.y;
         };
 
-        if ( !this.display )
-            this.display = r.path("M"+pt2String(this.A)+"L"+pt2String(this.B));
+        if ( !this.display ) {
+            var path = "M"+pt2String(this.A)+"L"+pt2String(this.B),
+                attr = {
+                    "stroke-width": 2,
+                    "stroke": stroke || "#000"
+                };
+            
+            this.display = r.path(path).attr(attr);
+        }
     };
 
     // get change from A to B
@@ -74,9 +83,15 @@
     };
 
 
-    pub.Circle.prototype.draw = function() {
-        if ( !this.display )
-            this.display = r.circle(this.cx, this.cy, this.rad);
+    pub.Circle.prototype.draw = function(stroke) {
+        if ( !this.display ) {
+            var attr = {
+                "stroke-width": 2,
+                "stroke": stroke || "#000"
+            };
+
+            this.display = r.circle(this.cx, this.cy, this.rad).attr(attr);
+        }
     };
 
 
