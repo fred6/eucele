@@ -5,29 +5,29 @@
 
     // TODO: test if this is there (i.e. don't just assume, handle it
     // when it's not there)
-    var Raphael = global.Raphael;
+    var Raphael = global.Raphael,
 
     // but this is very much a temporary thing until I understand a better
     // way to pass this in
-    var r = Raphael("canvas", 600, 400);
+      r = Raphael("canvas", 600, 400),
 
-    var pub = {};
+      pub = {};
 
     /*** Objects ***/
 
-    pub.Point = function(x, y) {
+    pub.Point = function( x, y ) {
         this.x = x;
         this.y = y;
     };
 
     pub.Point.prototype.draw = function() {
-        if(!this.display)
+        if ( !this.display )
             this.display = r.circle(this.x, this.y, 2).attr({fill: "#000"});
     };
 
-    pub.Segment = function(pt1, pt2) {
+    pub.Segment = function( pt1, pt2 ) {
         // ugly, but some other logic depends on left-most being the first point
-        if(pt1.x <= pt2.x) {
+        if ( pt1.x <= pt2.x ) {
             this.A = pt1;
             this.B = pt2;
         } else {
@@ -35,22 +35,22 @@
             this.B = pt1;
         }
 
-        this.length = Math.sqrt(Math.pow(this.B.x - this.A.x, 2)
-                              + Math.pow(this.B.y - this.A.y, 2));
+        this.length = Math.sqrt(Math.pow(this.B.x - this.A.x, 2) +
+                                Math.pow(this.B.y - this.A.y, 2));
     };
 
     pub.Segment.prototype.draw = function() {
-        var pt2String = function(pt) {
+        var pt2String = function( pt ) {
             return pt.x+", "+pt.y;
         };
 
-        if(!this.display)
+        if ( !this.display )
             this.display = r.path("M"+pt2String(this.A)+"L"+pt2String(this.B));
     };
 
     // get change from A to B
-    pub.Segment.prototype.getChangePerLength = function(coord) {
-        if(coord === "x") {
+    pub.Segment.prototype.getChangePerLength = function( coord ) {
+        if ( coord === "x" ) {
             return (this.B.x - this.A.x) / this.length;
         } else {
             return (this.B.y - this.A.y) / this.length;
@@ -66,7 +66,7 @@
         this.B.draw();
     };
 
-    pub.Circle = function(point, rad) {
+    pub.Circle = function( point, rad ) {
         this.center = point;
         this.cx = point.x;
         this.cy = point.y;
@@ -75,23 +75,23 @@
 
 
     pub.Circle.prototype.draw = function() {
-        if(!this.display)
+        if ( !this.display )
             this.display = r.circle(this.cx, this.cy, this.rad);
     };
 
 
     // the idea is that instead of having a separate triangle object, im just going
     // to have a proposition function return a group of segments.
-    pub.EleGroup = function(eles) {
-        for(var ele in eles) {
+    pub.EleGroup = function( eles ) {
+        for ( var ele in eles ) {
             this[ele] = eles[ele];
         }
     };
 
 
     pub.EleGroup.prototype.draw = function() {
-        for(var ele in this) {
-            if(this.hasOwnProperty(ele)) {
+        for ( var ele in this ) {
+            if ( this.hasOwnProperty(ele) ) {
                 this[ele].draw();
             }
         }
@@ -101,8 +101,8 @@
     /*** Utility funcitons ***/
 
 
-    pub.circFromSeg = function(segment, endpoint) {
-        if(endpoint === "A") {
+    pub.circFromSeg = function( segment, endpoint ) {
+        if ( endpoint === "A" ) {
             return new pub.Circle(segment.A, segment.length);
         } else {
             return new pub.Circle(segment.B, segment.length);
@@ -113,9 +113,9 @@
     // that includes both the extension and the original segment
     //
     // direction = 1 means A --> B, -1 means B --> A
-    pub.extendSegment = function(segment, endpoint, length, direction) {
+    pub.extendSegment = function( segment, endpoint, length, direction ) {
         var segpt;
-        if(endpoint === "A") {
+        if ( endpoint === "A" ) {
             segpt = segment.A;
         } else {
             segpt = segment.B;
@@ -130,10 +130,10 @@
     };
 
 
-    pub.findCircsIntersection = function(circ1, circ2) {
+    pub.findCircsIntersection = function( circ1, circ2 ) {
         var Lcirc, Rcirc;
 
-        if(circ1.cx <= circ2.cx) {
+        if ( circ1.cx <= circ2.cx ) {
             Lcirc = circ1;
             Rcirc = circ2;
         } else {
@@ -191,7 +191,7 @@
 
     // finds intersection of circle and segment for a segment passing
     // through the center of the circle
-    pub.findCircCenterSegIntersection = function(circ, seg) {
+    pub.findCircCenterSegIntersection = function( circ, seg ) {
         // find change per length of the segment, then
         // multiply by the radius of the circle to find the change
         // from circle to intersection
@@ -209,7 +209,7 @@
 
     // Prop1 - takes a segment, returns an equilateral triangle with the segment
     // as one of the sides
-    pub.Prop1 = function(seg) {
+    pub.Prop1 = function( seg ) {
         var c1 = pub.circFromSeg(seg, "A"),
             c2 = pub.circFromSeg(seg, "B");
         var inter = pub.findCircsIntersection(c1,c2);
@@ -229,7 +229,7 @@
 
     // Prop2 - takes a segment and a point, returns a segment located at the point
     // that's equal in length to the segment
-    pub.Prop2 = function(seg, pt) {
+    pub.Prop2 = function( seg, pt ) {
         var seg1 = new pub.Segment(seg.B, pt);
 
         var eqtri = pub.Prop1(seg1);
