@@ -225,6 +225,45 @@
 
     };
 
+
+    // Prop2 - takes a segment and a point, returns a segment located at the point
+    // that's equal in length to the segment
+    public.Prop2 = function(seg, pt) {
+        var seg1 = new public.Segment(seg.B, pt);
+
+        var eqtri = public.Prop1(seg1);
+
+        // now make the circle based on the original given seg
+        var seg_circ = public.circFromSeg(seg, "B");
+
+
+        //extend the other side of the equilateral triangle
+        var ext_seg = public.extendSegment(eqtri.sideA, "B", seg.length + 30, 1);
+
+
+        //find intersection of circle and extended line
+        var interpt = public.findCircCenterSegIntersection(seg_circ, ext_seg);
+
+        // the other point in the eq tri (not B or C)
+        var eqtri_otherpt = eqtri.sideA.A;
+
+
+        // line from other point of the eqtri to the intersection of the
+        // extension and the circle
+        var ext_inter_seg = new public.Segment(eqtri_otherpt, interpt);
+
+        var ext_inter_seg_circ = public.circFromSeg(ext_inter_seg, "A");
+
+        // extend the remaining side of the eq tri
+        var last_ext_seg = public.extendSegment(eqtri.sideB, "B", seg.length + 30, 1) ;
+
+        // find intersection of the newest circle and the last_ext_seg
+        var inter2pt = public.findCircCenterSegIntersection(ext_inter_seg_circ, last_ext_seg);
+
+        return new public.Segment(pt, inter2pt);
+
+    };
+
     // register globally
     global.euclib = public;
 
