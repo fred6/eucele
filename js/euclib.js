@@ -41,7 +41,7 @@
                                 Math.pow(this.B.y - this.A.y, 2));
     };
 
-    pub.Segment.prototype.draw = function(stroke) {
+    pub.Segment.prototype.draw = function( stroke ) {
         var pt2String = function( pt ) {
             return pt.x+", "+pt.y;
         };
@@ -83,7 +83,7 @@
     };
 
 
-    pub.Circle.prototype.draw = function(stroke) {
+    pub.Circle.prototype.draw = function( stroke ) {
         if ( !this.display ) {
             var attr = {
                 "stroke-width": 2,
