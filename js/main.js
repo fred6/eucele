@@ -26,7 +26,8 @@ require(["jquery", "bootstrap", "raphael", "euclib", "units"],
         var red = "#d43700",
             yellow = "#ffb200",
             blue = "#002e5f";
-        var euc = euclib;
+
+        var euc = euclib(Raphael("canvas", 600, 400));
 
         var A = new euc.Point(150, 180.5),
             B = new euc.Point(220, 180.5);
