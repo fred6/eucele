@@ -23,6 +23,24 @@ requirejs.config({
 
 require(["jquery", "bootstrap", "raphael", "euclib", "units"], 
     function( $, Bootstrap, Raphael, euclib, units ) {
+        function setNavActive ( ele ) {
+            $("#units-nav > li").removeClass("active");
+            ele.addClass("active");
+        }
+
+        // Initially set highlight
+        var hash = location.hash.slice(1);
+        setNavActive ( $('#units-nav > li > a[href = "#'+hash+'"]').parent() );
+
+        $("#units-nav > li").click(function(e) {
+            setNavActive ( $(this).addClass("active") );
+        });
+
+
+        $(window).bind('hashchange', function() {
+            //var unit = units.getUnit( location.hash.slice(1) );
+        });
+
         var red = "#d43700",
             yellow = "#ffb200",
             blue = "#002e5f";
