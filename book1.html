@@ -13,42 +13,11 @@
     </style>
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 
-    <script src="js/raphael-min.js"></script>
-    <script>
-        window.onload = function() {
-            var red = "#d43700",
-                yellow = "#ffb200",
-                blue = "#002e5f";
-            var euc = euclib;
-
-            var A = new euc.Point(150, 180.5),
-                B = new euc.Point(220, 180.5);
-            var seg = new euc.Segment(A, B);
-            seg.draw();
-
-            //start of construction
-
-            var c1 = euc.circFromSeg(seg, "A"),
-                c2 = euc.circFromSeg(seg, "B");
-
-            c1.draw(red);
-            c2.draw(yellow);
-
-            var inter = euc.findCircsIntersection(c1,c2);
-            inter.draw();
-
-            var Lside = new euc.Segment(A, inter),
-                Rside = new euc.Segment(B, inter);
-            Lside.draw(red);
-            Rside.draw(yellow);
-
-        };
-    </script>
-
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script data-main="js/main" src="js/require.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -115,9 +84,5 @@
         </div><!-- /row -->
 
     </div> <!-- /container -->
-
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/euclib.js"></script>
 </body>
 </html>

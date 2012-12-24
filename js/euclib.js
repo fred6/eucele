@@ -1,17 +1,9 @@
-// TODO: sub Segments?
-
-(function(global, undefined) {
+define( ["./raphael"], function( Raphael ) {
     "use strict";
-
-    // TODO: test if this is there (i.e. don't just assume, handle it
-    // when it's not there)
-    var Raphael = global.Raphael,
-
     // but this is very much a temporary thing until I understand a better
     // way to pass this in
-      r = Raphael("canvas", 600, 400),
-
-      pub = {};
+      var r = Raphael("canvas", 600, 400),
+          pub = {};
 
     /*** Objects ***/
 
@@ -280,8 +272,8 @@
 
     };
 
-    // register globally
-    global.euclib = pub;
+    // return globally
+    return pub;
 
-})(this);
+});
 
