@@ -11,7 +11,7 @@ define( ["./raphael"], function( Raphael ) {
             this.y = y;
         };
 
-        pub.Point.prototype.draw = function() {
+        pub.Point.prototype.show = function() {
             if ( !this.display ) {
                 var attr = {fill: "#000"};
                 this.display = r.circle(this.x, this.y, 2).attr(attr);
@@ -32,7 +32,7 @@ define( ["./raphael"], function( Raphael ) {
                                     Math.pow(this.B.y - this.A.y, 2));
         };
 
-        pub.Segment.prototype.draw = function( stroke ) {
+        pub.Segment.prototype.show = function( stroke ) {
             var pt2String = function( pt ) {
                 return pt.x+", "+pt.y;
             };
@@ -58,12 +58,12 @@ define( ["./raphael"], function( Raphael ) {
         };
 
         
-        pub.Segment.prototype.drawA = function() {
-            this.A.draw();
+        pub.Segment.prototype.showA = function() {
+            this.A.show();
         };
 
-        pub.Segment.prototype.drawB = function() {
-            this.B.draw();
+        pub.Segment.prototype.showB = function() {
+            this.B.show();
         };
 
         pub.Circle = function( point, rad ) {
@@ -74,7 +74,7 @@ define( ["./raphael"], function( Raphael ) {
         };
 
 
-        pub.Circle.prototype.draw = function( stroke ) {
+        pub.Circle.prototype.show = function( stroke ) {
             if ( !this.display ) {
                 var attr = {
                     "stroke-width": 2,
@@ -95,10 +95,10 @@ define( ["./raphael"], function( Raphael ) {
         };
 
 
-        pub.EleGroup.prototype.draw = function( stroke ) {
+        pub.EleGroup.prototype.show = function( stroke ) {
             for ( var ele in this ) {
                 if ( this.hasOwnProperty(ele) ) {
-                    this[ele].draw( stroke );
+                    this[ele].show( stroke );
                 }
             }
         };

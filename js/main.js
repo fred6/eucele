@@ -32,21 +32,21 @@ require(["jquery", "bootstrap", "raphael", "euclib", "units"],
         var A = new euc.Point(150, 180.5),
             B = new euc.Point(220, 180.5);
         var seg = new euc.Segment(A, B);
-        seg.draw();
+        seg.show();
 
         //start of construction
 
         var c1 = euc.circFromSeg(seg, "A"),
             c2 = euc.circFromSeg(seg, "B");
 
-        c1.draw(red);
-        c2.draw(yellow);
+        c1.show(red);
+        c2.show(yellow);
 
         var inter = euc.findCircsIntersection(c1,c2);
-        inter.draw();
+        inter.show();
 
         var Lside = new euc.Segment(A, inter),
             Rside = new euc.Segment(B, inter);
-        Lside.draw(red);
-        Rside.draw(yellow);
+        Lside.show(red);
+        Rside.show(yellow);
 });
