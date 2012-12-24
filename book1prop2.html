@@ -6,6 +6,9 @@
         <script>
             console.log('#############################################');
             window.onload = function() {
+                var red = "#d43700",
+                    yellow = "#ffb200",
+                    blue = "#002e5f";
                 var euc = euclib;
 
                 var A = new euc.Point(150, 180.5),
@@ -22,16 +25,16 @@
                 seg1.draw();
 
                 var eqtri = euc.Prop1(seg1);
-                eqtri.draw();
+                eqtri.draw(red);
 
                 // now make the circle based on the original given seg
                 var seg_circ = euc.circFromSeg(seg, "B");
-                seg_circ.draw();
+                seg_circ.draw(blue);
 
 
                 //extend the other side of the equilateral triangle
                 var ext_seg = euc.extendSegment(eqtri.sideA, "B", seg.length + 30, 1);
-                ext_seg.draw();
+                ext_seg.draw(yellow);
 
 
                 //find intersection of circle and extended line
@@ -46,11 +49,11 @@
                 var ext_inter_seg = new euc.Segment(eqtri_otherpt, interpt);
 
                 var ext_inter_seg_circ = euc.circFromSeg(ext_inter_seg, "A");
-                ext_inter_seg_circ.draw();
+                ext_inter_seg_circ.draw(red);
 
                 // extend the remaining side of the eq tri
                 var last_ext_seg = euc.extendSegment(eqtri.sideB, "B", seg.length + 30, 1) ;
-                last_ext_seg.draw();
+                last_ext_seg.draw(yellow);
 
                 // find intersection of the newest circle and the last_ext_seg
                 var inter2pt = euc.findCircCenterSegIntersection(ext_inter_seg_circ, last_ext_seg);

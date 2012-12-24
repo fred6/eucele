@@ -6,6 +6,9 @@
         <script>
             console.log('#############################################');
             window.onload = function() {
+                var red = "#d43700",
+                    yellow = "#ffb200",
+                    blue = "#002e5f";
                 var euc = euclib;
 
                 var A = new euc.Point(150, 180.5),
@@ -18,16 +21,16 @@
                 var seg2 = new euc.Segment(C, D);
 
                 seg1.draw();
-                seg2.draw();
+                seg2.draw(blue);
                 C.draw();
 
                 //start of construction
 
                 var newseg = euc.Prop2(seg1, C);
-                newseg.draw();
+                newseg.draw(yellow);
 
                 var seg2_circ = euc.circFromSeg(seg2);
-                seg2_circ.draw();
+                seg2_circ.draw(blue);
 
                 var seg1_circ_inter = euc.findCircCenterSegIntersection(seg2_circ, newseg);
                 seg1_circ_inter.draw();
