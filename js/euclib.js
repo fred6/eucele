@@ -104,10 +104,10 @@
     };
 
 
-    pub.EleGroup.prototype.draw = function() {
+    pub.EleGroup.prototype.draw = function( stroke ) {
         for ( var ele in this ) {
             if ( this.hasOwnProperty(ele) ) {
-                this[ele].draw();
+                this[ele].draw( stroke );
             }
         }
     };
