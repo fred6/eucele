@@ -7,7 +7,7 @@
 // │ Copyright (c) 2008-2011 Sencha Labs (http://sencha.com)             │ \\
 // │ Licensed under the MIT (http://raphaeljs.com/license.html) license. │ \\
 // └─────────────────────────────────────────────────────────────────────┘ \\
-define(["./raphael.core"], function(R) {
+define(["raphael.core"], function(R) {
     if(!R.svg) return;
 
     var has = "hasOwnProperty",
