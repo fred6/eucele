@@ -1,3 +1,5 @@
+// (c) 2012 fred6
+// This code is released under the MIT license.
 define( ["raphael"], function( Raphael ) {
     "use strict";
 

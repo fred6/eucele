@@ -1,3 +1,5 @@
+// (c) 2012 fred6
+// This code is released under the MIT license.
 define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, units ) {
     var pub = {};
 
