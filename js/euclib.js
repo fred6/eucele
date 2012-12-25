@@ -240,6 +240,35 @@ define( ["raphael"], function( Raphael ) {
 
         };
 
+        // specialized for drawing the pythagorean theorem logo
+        pub.logoSquareOnSegment = function ( seg, dir ) {
+            var ang = Raphael.rad(
+                        Raphael.angle(
+                            seg.B.x, seg.B.y, seg.A.x, seg.A.y)),
+                d = seg.length,
+                orient = (dir === "top") ? 1 : -1,
+
+                x = d*Math.sin(ang),
+                y = d*Math.cos(ang),
+                ptSx = seg.A.x + x,
+                ptSy = seg.A.y - orient*y,
+                ptTx = seg.B.x + x,
+                ptTy = seg.B.y - orient*y,
+                ptS = new pub.Point(ptSx, ptSy),
+                ptT = new pub.Point(ptTx, ptTy),
+                segAS = new pub.Segment(seg.A, ptS),
+                segBT = new pub.Segment(seg.B, ptT),
+                segST = new pub.Segment(ptS, ptT);
+
+                return new pub.EleGroup(
+                    {
+                        segAS: segAS,
+                        segBT: segBT,
+                        segST: segST
+                    });
+
+        };
+
 
 
         /*** Proposition logic ***/

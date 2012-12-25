@@ -113,6 +113,53 @@ define(function() {
         }; // b1prop1
 
 
+        // Pythagorean Theorem Logo
+        b1.pythag_logo = {
+            init: function() {
+                var children = [],
+                    A = new euclib.Point(105, 213.5),
+                    B = new euclib.Point(290, 213.5),
+                    segAB = new euclib.Segment(A, B),
+                    // calculating the coords of the point that would
+                    // make a right triangle at a given ACang
+                    ACang = Math.atan(6/4),
+                    AClen = segAB.length * Math.cos(ACang),
+                    Cx_off = AClen*Math.cos(ACang),
+                    Cy_off = AClen*Math.sin(ACang),
+                    C = new euclib.Point(A.x + Cx_off, A.y - Cy_off),
+                    segBC = new euclib.Segment(B, C),
+                    segAC = new euclib.Segment(A, C),
+                    group1 = new euclib.logoSquareOnSegment(segAB, "bottom"),
+                    group2 = new euclib.logoSquareOnSegment(segBC, "top"),
+                    group3 = new euclib.logoSquareOnSegment(segAC, "top"),
+                    D = new euclib.Point(C.x, A.y + segAB.length),
+                    segCD = new euclib.Segment(C, D),
+                    segA_BCT = new euclib.Segment(A, group2.segST.B),
+                    segB_ACS = new euclib.Segment(B, group3.segST.A),
+                    segC_ABS = new euclib.Segment(C, group1.segST.A),
+                    segC_ABT = new euclib.Segment(C, group1.segST.B);
+
+
+                children[0] = createCGChild(segAB, 0, red);
+                children[1] = createCGChild(segBC, 0, yellow);
+                children[2] = createCGChild(segAC, 0, blue);
+                children[3] = createCGChild(group1, 1, red);
+                children[4] = createCGChild(group2, 1, yellow);
+                children[5] = createCGChild(group3, 1, blue);
+                children[6] = createCGChild(segCD, 2, red);
+                children[7] = createCGChild(segA_BCT, 2, yellow);
+                children[8] = createCGChild(segB_ACS, 2, blue);
+                children[9] = createCGChild(segC_ABS, 3);
+                children[10] = createCGChild(segC_ABT, 3);
+
+                return children;
+
+            },
+
+            notes: "<p>squee</p>"
+        };
+
+
         // turn unit definitions into actual unit objects
         // something about this code seems deeply wrong to me but I'm not smart enough
         // to figure out an alternative right now
