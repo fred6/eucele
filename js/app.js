@@ -17,7 +17,7 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
         setNavActive ( $('#units-nav > li > a[href = "#'+hash+'"]').parent() );
 
         // Change nav-list highlights on click
-        $("#units-nav > li").click(function(e) {
+        $("#units-nav").on("click", "li", function(e) {
             setNavActive ( $(this) );
         });
 
