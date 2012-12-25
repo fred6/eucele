@@ -15,6 +15,8 @@ define( ["raphael"], function( Raphael ) {
             if ( !this.display ) {
                 var attr = {fill: "#000"};
                 this.display = r.circle(this.x, this.y, 2).attr(attr);
+            } else {
+                this.display.show();
             }
         };
 
@@ -51,6 +53,8 @@ define( ["raphael"], function( Raphael ) {
                     };
                 
                 this.display = r.path(path).attr(attr);
+            } else {
+                this.display.show();
             }
         };
 
@@ -94,6 +98,8 @@ define( ["raphael"], function( Raphael ) {
                 };
 
                 this.display = r.circle(this.cx, this.cy, this.rad).attr(attr);
+            } else {
+                this.display.show();
             }
         };
 
