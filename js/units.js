@@ -49,6 +49,7 @@ define(function() {
                     this.numStates = this.children[i].state;
                 }
             }
+            this.numStates += 1; // children.state is 0-referenced
         };
 
         CanvasGod.prototype.setState = function( state ) {
