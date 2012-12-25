@@ -9,7 +9,8 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
 
     pub.start = function () {
         var euc = euclib(Raphael("canvas", 600, 400)),
-            u = units ( euc );
+            u = units ( euc ),
+            currUnit;
 
         // Initially set highlight
         var hash = location.hash.slice(1);
@@ -23,8 +24,7 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
 
         // loads units
         $(window).bind('hashchange', function() {
-            var name = location.hash.slice(1),
-                currUnit;
+            var name = location.hash.slice(1);
 
             if ( name !== "" ) {
                 currUnit = u [ name ];
