@@ -1,4 +1,4 @@
-define( ["./raphael"], function( Raphael ) {
+define( ["raphael"], function( Raphael ) {
     "use strict";
 
     return function( r ) {

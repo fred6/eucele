@@ -8,20 +8,22 @@ define(function() {
         var pub = {},
             red = "#d43700",
             yellow = "#ffb200",
-            blue = "#002e5f";
+            blue = "#002e5f",
+            Unit,
+            CanvasGod;
 
 
-        pub.Unit = function( CG, notes ) {
+        Unit = function( CG, notes ) {
             this.notes = notes;
             this.CG = CG;
         };
 
-        pub.Unit.prototype.goTo = function( state ) {
+        Unit.prototype.goTo = function( state ) {
             this.CG.setState( state );
 
         };
 
-        pub.Unit.prototype.load = function() {
+        Unit.prototype.load = function() {
             this.goTo( 0 );
         };
 
@@ -36,11 +38,10 @@ define(function() {
         // indicates the number where it disappears, the third when it re-appears, etc.
         // I'm starting off with a single number because I'm not certain we need the
         // added functionality
-        pub.CanvasGod = function( initfn ) {
+        CanvasGod = function( initfn ) {
             // each child is an object consisting of a Euclib object and a number
             // I could verify that its valid, but I'm the only one using this, so I probably
             // just won't bother!
-            console.log("############ Inside CG constructor");
             this.children = initfn();
             this.numStates = 0;
             for ( var i = 0; i < this.children.length; i++ ) {
@@ -50,8 +51,7 @@ define(function() {
             }
         };
 
-        pub.CanvasGod.prototype.setState = function( state ) {
-            console.log("setting state to "+state);
+        CanvasGod.prototype.setState = function( state ) {
             var i, thisChild;
             for(i = 0; i < this.children.length; i++) {
                 thisChild = this.children[i];
@@ -119,8 +119,8 @@ define(function() {
         for ( unit in b1 ) {
             if ( b1.hasOwnProperty ( unit ) ) {
                 udef = b1[unit];
-                CG = new pub.CanvasGod ( udef.init );
-                pub["b1"+unit] = new pub.Unit ( CG , udef.notes );
+                CG = new CanvasGod ( udef.init );
+                pub["b1"+unit] = new Unit ( CG , udef.notes );
             }
         }
 

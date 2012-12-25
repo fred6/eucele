@@ -21,64 +21,7 @@ requirejs.config({
     }
 });
 
-require(["jquery", "bootstrap", "raphael", "euclib", "units"], 
-    function( $, Bootstrap, Raphael, euclib, units ) {
-        var euc = euclib(Raphael("canvas", 600, 400));
-        var u = units ( euc );
-
-        (function jQuerySetup($, units) {
-            var currUnit;
-
-            function setNavActive ( ele ) {
-                $("#units-nav > li").removeClass("active");
-                ele.addClass("active");
-            }
-
-            // Initially set highlight
-            var hash = location.hash.slice(1);
-            setNavActive ( $('#units-nav > li > a[href = "#'+hash+'"]').parent() );
-
-            $("#units-nav > li").click(function(e) {
-                setNavActive ( $(this).addClass("active") );
-            });
-
-
-            $(window).bind('hashchange', function() {
-                var hash = location.hash.slice(1);
-
-                if ( hash !== "" ) {
-                    currUnit = units [ hash ];
-                    currUnit.load();
-                }
-            });
-        })($, u);
-
-
-/*
-        var red = "#d43700",
-            yellow = "#ffb200",
-            blue = "#002e5f";
-
-
-        var A = new euc.Point(150, 180.5),
-            B = new euc.Point(220, 180.5);
-        var seg = new euc.Segment(A, B);
-        seg.show();
-
-        //start of construction
-
-        var c1 = euc.circFromSeg(seg, "A"),
-            c2 = euc.circFromSeg(seg, "B");
-
-        c1.show(red);
-        c2.show(yellow);
-
-        var inter = euc.findCircsIntersection(c1,c2);
-        inter.show();
-
-        var Lside = new euc.Segment(A, inter),
-            Rside = new euc.Segment(B, inter);
-        Lside.show(red);
-        Rside.show(yellow);
-*/
-});
+require(["bootstrap", "app"],
+    function( Bootstrap, app ) {
+        app.start();
+    });
