@@ -12,9 +12,7 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
             u = units ( euc ),
             currUnit;
 
-        // generic hash function, to be called either on hash change
-        // or on initial page load when a url with hash is loaded
-        function hashSetup ( name ) {
+        function loadPage ( name ) {
             var currUnit;
 
             if ( name !== "" ) {
@@ -46,7 +44,7 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
         // Setup based on initial hash
         var hash = location.hash.slice(1);
         setNavActive ( $('#units-nav > li > a[href = "#'+hash+'"]').parent() );
-        hashSetup ( hash );
+        loadPage ( hash );
 
         // Change nav-list highlights on click
         $("#units-nav").on("click", "li", function(e) {
@@ -58,7 +56,7 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
         $(window).bind('hashchange', function() {
             var name = location.hash.slice(1);
 
-            hashSetup ( name );
+            loadPage ( name );
         });
 
 
