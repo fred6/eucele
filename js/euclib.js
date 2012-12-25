@@ -18,6 +18,12 @@ define( ["./raphael"], function( Raphael ) {
             }
         };
 
+        pub.Point.prototype.hide = function() {
+            if ( this.display ) {
+                this.display.hide();
+            }
+        };
+
         pub.Segment = function( pt1, pt2 ) {
             // ugly, but some other logic depends on left-most being the first point
             if ( pt1.x <= pt2.x ) {
@@ -45,6 +51,12 @@ define( ["./raphael"], function( Raphael ) {
                     };
                 
                 this.display = r.path(path).attr(attr);
+            }
+        };
+
+        pub.Segment.prototype.hide = function() {
+            if ( this.display ) {
+                this.display.hide();
             }
         };
 
@@ -85,6 +97,12 @@ define( ["./raphael"], function( Raphael ) {
             }
         };
 
+        pub.Circle.prototype.hide = function() {
+            if ( this.display ) {
+                this.display.hide();
+            }
+        };
+
 
         // the idea is that instead of having a separate triangle object, im just going
         // to have a proposition function return a group of segments.
@@ -99,6 +117,14 @@ define( ["./raphael"], function( Raphael ) {
             for ( var ele in this ) {
                 if ( this.hasOwnProperty(ele) ) {
                     this[ele].show( stroke );
+                }
+            }
+        };
+
+        pub.EleGroup.prototype.hide = function() {
+            for ( var ele in this ) {
+                if ( this.hasOwnProperty(ele) ) {
+                    this[ele].hide();
                 }
             }
         };

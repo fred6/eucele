@@ -23,29 +23,42 @@ requirejs.config({
 
 require(["jquery", "bootstrap", "raphael", "euclib", "units"], 
     function( $, Bootstrap, Raphael, euclib, units ) {
-        function setNavActive ( ele ) {
-            $("#units-nav > li").removeClass("active");
-            ele.addClass("active");
-        }
+        var euc = euclib(Raphael("canvas", 600, 400));
+        var u = units ( euc );
 
-        // Initially set highlight
-        var hash = location.hash.slice(1);
-        setNavActive ( $('#units-nav > li > a[href = "#'+hash+'"]').parent() );
+        (function jQuerySetup($, units) {
+            var currUnit;
 
-        $("#units-nav > li").click(function(e) {
-            setNavActive ( $(this).addClass("active") );
-        });
+            function setNavActive ( ele ) {
+                $("#units-nav > li").removeClass("active");
+                ele.addClass("active");
+            }
+
+            // Initially set highlight
+            var hash = location.hash.slice(1);
+            setNavActive ( $('#units-nav > li > a[href = "#'+hash+'"]').parent() );
+
+            $("#units-nav > li").click(function(e) {
+                setNavActive ( $(this).addClass("active") );
+            });
 
 
-        $(window).bind('hashchange', function() {
-            //var unit = units.getUnit( location.hash.slice(1) );
-        });
+            $(window).bind('hashchange', function() {
+                var hash = location.hash.slice(1);
 
+                if ( hash !== "" ) {
+                    currUnit = units [ hash ];
+                    currUnit.load();
+                }
+            });
+        })($, u);
+
+
+/*
         var red = "#d43700",
             yellow = "#ffb200",
             blue = "#002e5f";
 
-        var euc = euclib(Raphael("canvas", 600, 400));
 
         var A = new euc.Point(150, 180.5),
             B = new euc.Point(220, 180.5);
@@ -67,4 +80,5 @@ require(["jquery", "bootstrap", "raphael", "euclib", "units"],
             Rside = new euc.Segment(B, inter);
         Lside.show(red);
         Rside.show(yellow);
+*/
 });
