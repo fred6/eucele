@@ -108,7 +108,7 @@ define(function() {
                 return children;
             },
 
-            notes: "Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this"
+            notes: "<p>Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this</p>"
 
         }; // b1prop1
 

@@ -15,29 +15,37 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
         function loadPage ( name ) {
             var currUnit;
 
-            if ( name !== "" ) {
+            $("#unit-btn-grp button").remove();
+
+            // TODO: create an index page to load so I dont have to do this manually
+            if ( name === "" ) {
+                $("#unit-notes").html("");
+            } else {
                 currUnit = u [ name ];
                 currUnit.load();
-            }
 
-            // Set up buttons based on number of states in the unit
-            $("#unit-btn-grp button").remove();
-            var btn_txt;
-            for(var i = 0; i < currUnit.CG.numStates; i++) {
-                if ( i === 0 ) {
-                    btn_txt = '<button class="btn btn-block active">Given</button>';
-                } else {
-                    btn_txt = '<button class="btn btn-block">'+i+'</button>';
+                // Set up buttons based on number of states in the unit
+                var btn_txt;
+                for(var i = 0; i < currUnit.CG.numStates; i++) {
+                    if ( i === 0 ) {
+                        btn_txt = '<button class="btn btn-block active">Given</button>';
+                    } else {
+                        btn_txt = '<button class="btn btn-block">'+i+'</button>';
+                    }
+
+                    $(btn_txt).appendTo("#unit-btn-grp");
+
                 }
 
-                $(btn_txt).appendTo("#unit-btn-grp");
+                // delegated event handler for efficiency
+                $("#unit-btn-grp").on("click", "button", function(e) {
+                    currUnit.goTo( $(this).index() );
+                });
 
+
+                // set unit description
+                $("#unit-notes").html("<h2>Notes</h2>"+currUnit.notes);
             }
-
-            // delegated event handler for efficiency
-            $("#unit-btn-grp").on("click", "button", function(e) {
-                currUnit.goTo( $(this).index() );
-            });
 
         }
 
