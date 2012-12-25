@@ -38,6 +38,8 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
                 }
 
                 // delegated event handler for efficiency
+                $("#unit-btn-grp").off("click", "button");
+
                 $("#unit-btn-grp").on("click", "button", function(e) {
                     currUnit.goTo( $(this).index() );
                 });
