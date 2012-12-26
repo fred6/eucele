@@ -10,7 +10,8 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
 
 
     pub.start = function () {
-        var euc = euclib(Raphael("canvas", 600, 400)),
+        var raph = Raphael("canvas", 600, 400),
+            euc = euclib(raph),
             u = units ( euc ),
             currUnit;
 
@@ -23,6 +24,7 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
             if ( name === "" ) {
                 $("#unit-notes").html("");
             } else {
+                raph.clear();
                 currUnit = u [ name ];
                 currUnit.load();
 
