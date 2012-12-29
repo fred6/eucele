@@ -170,6 +170,37 @@ define(function() {
         }; // b1prop2
 
 
+
+        b1.prop3 = {
+            init: function() {
+                var A = new euclib.Point(150, 180.5),
+                    B = new euclib.Point(230, 255.5),
+                    C = new euclib.Point(260, 170.5),
+                    D = new euclib.Point(230, 115.5),
+                    seg1 = new euclib.Segment(A, B),
+                    seg2 = new euclib.Segment(C, D),
+                    //start of construction
+                    newseg = euclib.Prop2(seg1, C),
+                    seg2_circ = euclib.circFromSeg(seg2),
+                    seg1_circ_inter = euclib.findCircCenterSegIntersection(seg2_circ, newseg);
+
+                return [
+                    createCGChild(seg1, 0),
+                    createCGChild(seg2, 0, blue),
+                    createCGChild(C, 0),
+                    createCGChild(newseg, 1, yellow),
+                    createCGChild(seg2_circ, 2, blue),
+                    createCGChild(seg1_circ_inter, 3),
+                ];
+
+            },
+
+            title: "Proposition 3",
+            notes: ""
+
+        }; // b1prop3
+
+
         // Pythagorean Theorem Logo
         b1.pythag_logo = {
             init: function() {
