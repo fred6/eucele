@@ -16,7 +16,6 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
             currUnit;
 
         function loadPage ( name ) {
-            var currUnit;
 
             $("#unit-btn-grp button").remove();
 
@@ -24,7 +23,9 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
             if ( name === "" ) {
                 $("#unit-notes").html("");
             } else {
-                raph.clear();
+                if ( currUnit )
+                    currUnit.disappear();
+
                 currUnit = u [ name ];
                 currUnit.load();
 

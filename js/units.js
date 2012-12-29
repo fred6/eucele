@@ -30,6 +30,10 @@ define(function() {
             this.goTo( 0 );
         };
 
+        Unit.prototype.disappear = function() {
+            this.goTo( -1 );
+        };
+
 
         // CanvasGod is an object that has a collection of canvas objects
         // (children). each object has (for now) a single number attached,
