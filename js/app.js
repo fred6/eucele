@@ -56,7 +56,6 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
             // set unit description & title
             this.eles.notes.html("<h2>Notes</h2>"+this.currUnit.notes);
             this.eles.title.html(this.currUnit.title);
-
         };
 
         BookViewer.prototype.buttonSetup = function() {
@@ -84,6 +83,7 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
 
         };
 
+
         var BV = new BookViewer();
 
         // loads units
@@ -91,7 +91,6 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
             var name = location.hash.slice(1);
             BV.loadUnit ( name );
         });
-
 
     }; // start
 
