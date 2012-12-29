@@ -52,6 +52,9 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
 
                 // set unit description
                 $("#unit-notes").html("<h2>Notes</h2>"+currUnit.notes);
+
+                // & title
+                $("#unit-title").html(currUnit.name);
             }
 
         }
