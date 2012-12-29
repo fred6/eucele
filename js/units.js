@@ -96,8 +96,7 @@ define(function() {
 
         b1.prop1 = {
             init: function() {
-                var children = [],
-                    A = new euclib.Point(150, 180.5),
+                var A = new euclib.Point(150, 180.5),
                     B = new euclib.Point(220, 180.5),
                     seg = new euclib.Segment(A, B),
                     c1 = euclib.circFromSeg(seg, "A"),
@@ -106,14 +105,15 @@ define(function() {
                     Lside = new euclib.Segment(A, inter),
                     Rside = new euclib.Segment(B, inter);
 
-                children[0] = createCGChild(seg, 0);
-                children[1] = createCGChild(c1, 1, red);
-                children[2] = createCGChild(c2, 2, yellow);
-                children[3] = createCGChild(inter, 3);
-                children[4] = createCGChild(Lside, 4, red);
-                children[5] = createCGChild(Rside, 5, yellow);
+                return [
+                    createCGChild(seg, 0),
+                    createCGChild(c1, 1, red),
+                    createCGChild(c2, 2, yellow),
+                    createCGChild(inter, 3),
+                    createCGChild(Lside, 4, red),
+                    createCGChild(Rside, 5, yellow)
+                ];
 
-                return children;
             },
 
             name: "Proposition 1",
@@ -124,8 +124,7 @@ define(function() {
 
         b1.prop2 = {
             init: function() {
-                var children = [],
-                    A = new euclib.Point(150, 180.5),
+                var A = new euclib.Point(150, 180.5),
                     B = new euclib.Point(220, 220.5),
                     C = new euclib.Point(260, 170.5),
                     seg = new euclib.Segment(A, B),
@@ -149,17 +148,18 @@ define(function() {
                     // find intersection of the newest circle and the last_ext_seg
                     inter2pt = euclib.findCircCenterSegIntersection(ext_inter_seg_circ, last_ext_seg);
 
-                children[0] = createCGChild(seg, 0);
-                children[1] = createCGChild(C, 0);
-                children[2] = createCGChild(segBC, 1, gray);
-                children[3] = createCGChild(eqtri, 2, red);
-                children[4] = createCGChild(seg_circ, 3, blue);
-                children[5] = createCGChild(ext_seg, 4, yellow);
-                children[6] = createCGChild(ext_inter_seg_circ, 5, red);
-                children[7] = createCGChild(last_ext_seg, 6, red);
-                children[8] = createCGChild(inter2pt, 7);
+                return [
+                    createCGChild(seg, 0),
+                    createCGChild(C, 0),
+                    createCGChild(segBC, 1, gray),
+                    createCGChild(eqtri, 2, red),
+                    createCGChild(seg_circ, 3, blue),
+                    createCGChild(ext_seg, 4, yellow),
+                    createCGChild(ext_inter_seg_circ, 5, red),
+                    createCGChild(last_ext_seg, 6, red),
+                    createCGChild(inter2pt, 7)
+                ];
 
-                return children;
             },
 
             name: "Proposition 2",
@@ -171,8 +171,7 @@ define(function() {
         // Pythagorean Theorem Logo
         b1.pythag_logo = {
             init: function() {
-                var children = [],
-                    A = new euclib.Point(105, 213.5),
+                var A = new euclib.Point(105, 213.5),
                     B = new euclib.Point(290, 213.5),
                     segAB = new euclib.Segment(A, B),
                     // calculating the coords of the point that would
@@ -195,19 +194,20 @@ define(function() {
                     segC_ABT = new euclib.Segment(C, group1.segST.B);
 
 
-                children[0] = createCGChild(segAB, 0, red);
-                children[1] = createCGChild(segBC, 0, yellow);
-                children[2] = createCGChild(segAC, 0, blue);
-                children[3] = createCGChild(group1, 1, red);
-                children[4] = createCGChild(group2, 1, yellow);
-                children[5] = createCGChild(group3, 1, blue);
-                children[6] = createCGChild(segCD, 2, red);
-                children[7] = createCGChild(segA_BCT, 2, yellow);
-                children[8] = createCGChild(segB_ACS, 2, blue);
-                children[9] = createCGChild(segC_ABS, 3);
-                children[10] = createCGChild(segC_ABT, 3);
+                return [
+                    createCGChild(segAB, 0, red),
+                    createCGChild(segBC, 0, yellow),
+                    createCGChild(segAC, 0, blue),
+                    createCGChild(group1, 1, red),
+                    createCGChild(group2, 1, yellow),
+                    createCGChild(group3, 1, blue),
+                    createCGChild(segCD, 2, red),
+                    createCGChild(segA_BCT, 2, yellow),
+                    createCGChild(segB_ACS, 2, blue),
+                    createCGChild(segC_ABS, 3),
+                    createCGChild(segC_ABT, 3)
+                ];
 
-                return children;
 
             },
 
