@@ -16,8 +16,8 @@ define(function() {
             CanvasGod;
 
 
-        Unit = function( name, CG, notes ) {
-            this.name = name;
+        Unit = function( title, CG, notes ) {
+            this.title = title;
             this.notes = notes;
             this.CG = CG;
             this.numStates = this.CG.numStates;
@@ -117,7 +117,7 @@ define(function() {
 
             },
 
-            name: "Proposition 1",
+            title: "Proposition 1",
             notes: "<p>Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this</p>"
 
         }; // b1prop1
@@ -163,7 +163,7 @@ define(function() {
 
             },
 
-            name: "Proposition 2",
+            title: "Proposition 2",
             notes: ""
 
         }; // b1prop2
@@ -224,7 +224,7 @@ define(function() {
             if ( b1.hasOwnProperty ( unit ) ) {
                 udef = b1[unit];
                 CG = new CanvasGod ( udef.init );
-                pub["b1"+unit] = new Unit ( udef.name, CG , udef.notes );
+                pub["b1"+unit] = new Unit ( udef.title, CG , udef.notes );
             }
         }
 
