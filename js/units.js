@@ -20,6 +20,7 @@ define(function() {
             this.name = name;
             this.notes = notes;
             this.CG = CG;
+            this.numStates = this.CG.numStates;
         };
 
         Unit.prototype.goTo = function( state ) {
