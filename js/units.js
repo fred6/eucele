@@ -21,11 +21,12 @@ define(function() {
             this.notes = notes;
             this.CG = CG;
             this.numStates = this.CG.numStates;
+            this.currentState = 0;
         };
 
         Unit.prototype.goTo = function( state ) {
+            this.currentState = state;
             this.CG.setState( state );
-
         };
 
         Unit.prototype.load = function() {
