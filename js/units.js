@@ -85,8 +85,8 @@ define(["euclib"], function( euclib ) {
 
 
     pub.b1.prop1 = new Unit(function( r ) {
-        var A = new euclib.Point ( r, 150, 180.5 ),
-            B = new euclib.Point ( r, 220, 180.5 ),
+        var A = new euclib.Point ( r, 260, 180.5 ),
+            B = new euclib.Point ( r, 330, 180.5 ),
             seg = new euclib.Segment ( r, A, B ),
             c1 = euclib.circFromSeg ( r, seg, "A" ),
             c2 = euclib.circFromSeg ( r, seg, "B" ),

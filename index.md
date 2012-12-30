@@ -6,6 +6,8 @@ The colors are heavily inspired by [Oliver Byrne's version of the Elements](http
 
 Some wise words go here. 2000 year old book. blah blah.
 
+I use "■" to indicate that a proof is over. This is called a [halmos or tombstone](http://en.wikipedia.org/wiki/Tombstone_(typography)). This is used in place of [QED](http://en.wikipedia.org/wiki/Q.E.D.)
+
 # Book 1
 ## Definitions
 ### Point
@@ -33,9 +35,14 @@ All right angles are equal to one another.
 ## Common Notions
 ## Propositions
 ### Proposition 1
-Given a straight line segment, we can construct an equilateral triangle on that segment.
+Given a straight line segment **AB**, we can construct an equilateral triangle with that segment as one of the sides.
 
 <div id="Rprop1" class="raph_container"></div>
+
+#### Proof
+We can draw a circle with center at **A** and a radius of **AB**. We can also draw a circle with center at **B** and the same radius. The two circles intersect at a point, call it **C**.
+
+Now we can draw a straight line segment between **A** and **C**, and another between **B** and **C**. ■
 
 Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this.
 
