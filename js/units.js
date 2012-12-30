@@ -237,11 +237,6 @@ define(["euclib"], function( euclib ) {
         }
     );
 
-
-    // turn unit definitions into actual unit objects
-    // something about this code seems deeply wrong to me but I'm not smart enough
-    // to figure out an alternative right now
-    var unit, udef, CG;
 //    for ( unit in b1 ) {
 //       if ( b1.hasOwnProperty ( unit ) ) {
 
