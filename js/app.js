@@ -61,7 +61,6 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
         BookViewer.prototype.buttonSetup = function() {
             // Set up buttons based on number of states in the unit
             var btn_txt;
-            console.log(this.currUnit.numStates);
             for(var i = 0; i < this.currUnit.numStates; i++) {
                 if ( i === 0 ) {
                     btn_txt = '<button class="btn btn-block active">Given</button>';
@@ -70,7 +69,6 @@ define( ["jquery", "raphael", "euclib", "units"], function( $, Raphael, euclib, 
                 }
 
                 this.eles.btn_group.append(btn_txt);
-                console.log(this.eles.btn_group);
             }
 
             // delegated event handler for efficiency
