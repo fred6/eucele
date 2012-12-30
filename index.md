@@ -16,7 +16,7 @@ I use "■" to indicate that a proof is over. This is called a [halmos or tombst
 A **point** is an entity with position but not magnitude.
 
 ### Lines
-A **line** is a length without width or height. Some lines are curvy (like, as  we shall see, the perimeter of a circle), but lines that are not curvy are **straight lines**.
+A **line** is a length without width or height. Some lines are curvy (like, as  we shall see, the perimeter of a circle), but lines that are not curvy are **straight lines**. 
 
 The endpoints of a line are points.
 
@@ -47,11 +47,11 @@ Given a straight line segment **AB**, we can construct an equilateral triangle w
 <div id="Rprop1" class="raph_container"></div>
 
 #### Proof
-We can draw a circle with center at **A** and a radius of **AB**. We can also draw a circle with center at **B** and the same radius. The two circles intersect at a point, call it **C**.
+[We can draw a circle with center at **A** and a radius of **AB**.](#postulate-3) [We can also draw a circle with center at **B** and the same radius.](#postulate-3) [The two circles intersect at a point, call it **C**.](#note-1)
 
-Now we can draw a straight line segment between **A** and **C**, and another between **B** and **C**. ■
+[Now we can draw a straight line segment between **A** and **C**,](#postulate-1) and [another between **B** and **C**.](#postulate-1) ■
 
-Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this.
+Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.
 
 
 ### Proposition 2
