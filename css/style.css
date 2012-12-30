@@ -41,3 +41,10 @@ hgroup {
 a, a:visited {
     color: #0d55d0;
 }
+
+#popupdiv {
+    background-color: #fff;
+    border: 1px solid #666;
+    padding: 7px;
+    width: 250px;
+}

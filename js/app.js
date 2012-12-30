@@ -1,6 +1,6 @@
 // (c) 2012 fred6
 // This code is released under the MIT license.
-define( ["jquery", "raphael", "units"], function( $, Raphael, units ) {
+define( ["jquery", "raphael", "units", "justifications"], function( $, Raphael, units, justifications ) {
     var pub = {};
     pub.start = function () {
         // set up button bindings for stepping thru
@@ -28,6 +28,9 @@ define( ["jquery", "raphael", "units"], function( $, Raphael, units ) {
 
             units.b1[unit].init(raph);
         });
+
+        
+        justifications.setup();
 
     }; // start
 
