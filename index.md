@@ -32,6 +32,11 @@ Given a point A and another point B, a circle can be drawn with center at point 
 All right angles are equal to one another.
 
 ### Postulate 5
+### Postulate discussion
+Significance of the axiomatic method in general (I'm not qualified for this probably). We have 3 construction axioms, which really means that, in this book, we have a compass and a straight edge. (But notice, due to prop. 2, that we can't reliably preserve distance via the compass when we pick it up from the paper. Otherwise we would immediately have the ability to draw a line of length equal to **Line 1** at an arbitrary point **C**.
+
+Should cover the infamous postulate 5 as well. Everything up to postulate 29 can be considered "neutral geometry", because none of it utilizes postulate 5. In fact, we could almost split Euclid's Book 1 into two books: 1-28 is Neutral plane geometry, and 29+ is euclidean plane geometry.
+
 ## Common Notions
 ## Propositions
 ### Proposition 1
