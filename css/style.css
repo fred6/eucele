@@ -1,10 +1,35 @@
 body {
+    width: 600px;
+    margin:40px auto;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
 }
 
-@media screen and (min-width: 768px) {
-    body {
-        width: 748px;
-        margin:40px auto;
-    }
+p {
+    line-height: 1.5em;
+    color: #222;
+}
+
+h1 {
+    line-height: 1.1em;
+}
+
+#cover {
+    color: #222;
+    margin-bottom: 40px;
+}
+
+#cover h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+#cover h2 {
+    line-height: 1em;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+hgroup {
+    margin-bottom: 40px;
 }
