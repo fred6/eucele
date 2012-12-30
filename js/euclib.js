@@ -44,7 +44,7 @@ define( ["raphael"], function( Raphael ) {
                                 Math.pow(this.B.y - this.A.y, 2));
     };
 
-    pub.Segment.prototype.show = function( r, stroke ) {
+    pub.Segment.prototype.show = function( stroke ) {
         var pt2String = function( pt ) {
             return pt.x+", "+pt.y;
         };
@@ -95,7 +95,7 @@ define( ["raphael"], function( Raphael ) {
     };
 
 
-    pub.Circle.prototype.show = function( r, stroke ) {
+    pub.Circle.prototype.show = function( stroke ) {
         if ( !this.display ) {
             var attr = {
                 "stroke-width": 2,
