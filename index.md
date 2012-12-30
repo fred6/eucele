@@ -9,5 +9,18 @@ Some wise words go here. 2000 year old book. blah blah.
 # Book 1
 ## Definitions
 ## Postulates
+### Postulate 1
+A line segment can be drawn between any two points.
+
+### Postulate 2
+Any line segment can be extended arbitrarily.
+
+### Postulate 3
+Given a point A and another point B, a circle can be drawn with center at point A and with radius equal to the segment between A and B.
+
+### Postulate 4
+All right angles are equal to one another.
+
+### Postulate 5
 ## Common Notions
 ## Propositions
