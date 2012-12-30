@@ -1,5 +1,7 @@
 # Preface
 
+This page/site/book/hypertext learning document, both words and code, is licensed under [CC-0](http://creativecommons.org/publicdomain/zero/1.0/). You can find all files on [github](https://github.com/fred6/eucele), discuss issues, submit pull requests, fork it, whatev.
+
 The colors are heavily inspired by [Oliver Byrne's version of the Elements](http://www.math.ubc.ca/~cass/Euclid/byrne.html) (the colors themselves are a direct ripoff, but I've used them in different ways). I've also made use of [Richard Fitzpatrick's translation of the Elements](http://farside.ph.utexas.edu/euclid.html), as well as [D.E. Joyce's site on the Elements](http://aleph0.clarku.edu/~djoyce/java/elements/bookI/bookI.html), which is, of course, the original web adaptation of Euclid. [Proof Wiki's presentation](http://www.proofwiki.org/wiki/ProofWiki:Books/Euclid/The_Elements) has been useful as well.
 
 A word to math aficionados: I'm clearly not aiming for absolute rigor here (c.f. my section of definitions for lines, where I describe lines as "curvy" without defining what that means). There are deeper problems with Euclid's postulates, and anyway others far more competent than I have cleaned all this up (see [Hilbert's *Foundations of Geometry*](http://en.wikipedia.org/wiki/Hilbert's_axioms)).
