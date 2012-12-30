@@ -17,7 +17,7 @@ define( ["jquery", "raphael", "units"], function( $, Raphael, units ) {
         $(".raph_container").each(function() {
             var heights = [300, 400],
                 raph_div = '<div class="raphael"></div>',
-                button_div = '<div><button class="left">&lt;</button><button class="right">&gt;</button></div>',
+                button_div = '<div style="text-align:center"><button class="left">&lt;</button><button class="right">&gt;</button></div>',
 
                 $this = $(this),
                 unit = $this.attr('id').slice(1),
