@@ -106,70 +106,66 @@ define(["euclib"], function( euclib ) {
     };
 
 
-    pub.b1.prop1 = new Unit(
-        function( r ) {
-            var A = new euclib.Point ( r, 150, 180.5 ),
-                B = new euclib.Point ( r, 220, 180.5 ),
-                seg = new euclib.Segment ( r, A, B ),
-                c1 = euclib.circFromSeg ( r, seg, "A" ),
-                c2 = euclib.circFromSeg ( r, seg, "B" ),
-                inter = euclib.findCircsIntersection ( r, c1, c2 ),
-                Lside = new euclib.Segment ( r, A, inter ),
-                Rside = new euclib.Segment ( r, B, inter );
+    pub.b1.prop1 = new Unit(function( r ) {
+        var A = new euclib.Point ( r, 150, 180.5 ),
+            B = new euclib.Point ( r, 220, 180.5 ),
+            seg = new euclib.Segment ( r, A, B ),
+            c1 = euclib.circFromSeg ( r, seg, "A" ),
+            c2 = euclib.circFromSeg ( r, seg, "B" ),
+            inter = euclib.findCircsIntersection ( r, c1, c2 ),
+            Lside = new euclib.Segment ( r, A, inter ),
+            Rside = new euclib.Segment ( r, B, inter );
 
-            return [
-                createCGChild(seg, 0),
-                createCGChild(c1, 1, red),
-                createCGChild(c2, 2, yellow),
-                createCGChild(inter, 3),
-                createCGChild(Lside, 4, red),
-                createCGChild(Rside, 5, yellow)
-            ];
-        }
-    ); // b1prop1
+        return [
+            createCGChild(seg, 0),
+            createCGChild(c1, 1, red),
+            createCGChild(c2, 2, yellow),
+            createCGChild(inter, 3),
+            createCGChild(Lside, 4, red),
+            createCGChild(Rside, 5, yellow)
+        ];
+    }); // prop1
     
 
-    pub.b1.prop2 = new Unit(
-        function() {
-            var A = new euclib.Point(150, 180.5),
-                B = new euclib.Point(220, 220.5),
-                C = new euclib.Point(260, 170.5),
+    pub.b1.prop2 = new Unit(function( r ) {
+        var A = new euclib.Point ( r, 150, 180.5 ),
+            B = new euclib.Point ( r, 220, 220.5 ),
+            C = new euclib.Point ( r, 260, 170.5 ),
 
-                seg = new euclib.Segment(A, B),
-                segBC = new euclib.Segment(B, C),
-                eqtri = euclib.Prop1(segBC),
-                seg_circ = euclib.circFromSeg(seg, "B"),
-                ext_seg = euclib.extendSegment(eqtri.sideA, "B", seg.length + 30, 1),
-                //find intersection of circle and extended line
-                interpt = euclib.findCircCenterSegIntersection(seg_circ, ext_seg),
-                // the other point in the eq tri (not B or C)
-                eqtri_otherpt = eqtri.sideA.A,
+            seg = new euclib.Segment ( r, A, B ),
+            segBC = new euclib.Segment ( r, B, C ),
+            eqtri = euclib.Prop1 ( r, segBC ),
+            seg_circ = euclib.circFromSeg ( r, seg, "B" ),
+            ext_seg = euclib.extendSegment ( r, eqtri.sideA, "B", seg.length + 30, 1 ),
+            //find intersection of circle and extended line
+            interpt = euclib.findCircCenterSegIntersection ( r, seg_circ, ext_seg ),
+            // the other point in the eq tri (not B or C)
+            eqtri_otherpt = eqtri.sideA.A,
 
-                // line from other point of the eqtri to the intersection of the
-                // extension and the circle
-                ext_inter_seg = new euclib.Segment(eqtri_otherpt, interpt),
+            // line from other point of the eqtri to the intersection of the
+            // extension and the circle
+            ext_inter_seg = new euclib.Segment ( r, eqtri_otherpt, interpt ),
 
-                ext_inter_seg_circ = euclib.circFromSeg(ext_inter_seg, "A"),
+            ext_inter_seg_circ = euclib.circFromSeg ( r, ext_inter_seg, "A" ),
 
-                // extend the remaining side of the eq tri
-                last_ext_seg = euclib.extendSegment(eqtri.sideB, "B", seg.length + 30, 1),
-                // find intersection of the newest circle and the last_ext_seg
-                inter2pt = euclib.findCircCenterSegIntersection(ext_inter_seg_circ, last_ext_seg);
+            // extend the remaining side of the eq tri
+            last_ext_seg = euclib.extendSegment ( r, eqtri.sideB, "B", seg.length + 30, 1 ),
+            // find intersection of the newest circle and the last_ext_seg
+            inter2pt = euclib.findCircCenterSegIntersection ( r, ext_inter_seg_circ, last_ext_seg );
 
-            return [
-                createCGChild(seg, 0),
-                createCGChild(C, 0),
-                createCGChild(segBC, 1, gray),
-                createCGChild(eqtri, 2, red),
-                createCGChild(seg_circ, 3, blue),
-                createCGChild(ext_seg, 4, yellow),
-                createCGChild(ext_inter_seg_circ, 5, red),
-                createCGChild(last_ext_seg, 6, red),
-                createCGChild(inter2pt, 7)
-            ];
+        return [
+            createCGChild(seg, 0),
+            createCGChild(C, 0),
+            createCGChild(segBC, 1, gray),
+            createCGChild(eqtri, 2, red),
+            createCGChild(seg_circ, 3, blue),
+            createCGChild(ext_seg, 4, yellow),
+            createCGChild(ext_inter_seg_circ, 5, red),
+            createCGChild(last_ext_seg, 6, red),
+            createCGChild(inter2pt, 7)
+        ];
 
-        }
-    ); // b1prop2
+    }); // prop2
 
 
 

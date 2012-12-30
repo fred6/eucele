@@ -31,3 +31,8 @@ Given a straight line segment, we can construct an equilateral triangle on that 
 
 Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this.
 
+
+### Proposition 2
+Given a line segment and a point, we can construct a line segment of equal length to the original segment at the point.
+
+<div id="Rprop2" class="raph_container"></div>

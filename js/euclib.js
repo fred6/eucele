@@ -156,7 +156,7 @@ define( ["raphael"], function( Raphael ) {
     // that includes both the extension and the original segment
     //
     // direction = 1 means A --> B, -1 means B --> A
-    pub.extendSegment = function( segment, endpoint, length, direction ) {
+    pub.extendSegment = function( r, segment, endpoint, length, direction ) {
         var segpt;
         if ( endpoint === "A" ) {
             segpt = segment.A;
@@ -166,9 +166,9 @@ define( ["raphael"], function( Raphael ) {
         
         var y_inc = direction * segment.getChangePerLength("y") * length;
         var x_inc = direction * segment.getChangePerLength("x") * length;
-        var extendpt = new pub.Point(segpt.x + x_inc, segpt.y + y_inc);
+        var extendpt = new pub.Point ( r, segpt.x + x_inc, segpt.y + y_inc );
 
-        return new pub.Segment(segpt, extendpt);
+        return new pub.Segment ( r, segpt, extendpt );
 
     };
 
@@ -232,7 +232,7 @@ define( ["raphael"], function( Raphael ) {
 
     // finds intersection of circle and segment for a segment passing
     // through the center of the circle
-    pub.findCircCenterSegIntersection = function( circ, seg ) {
+    pub.findCircCenterSegIntersection = function( r, circ, seg ) {
         // find change per length of the segment, then
         // multiply by the radius of the circle to find the change
         // from circle to intersection
@@ -279,13 +279,13 @@ define( ["raphael"], function( Raphael ) {
 
     // Prop1 - takes a segment, returns an equilateral triangle with the segment
     // as one of the sides
-    pub.Prop1 = function( seg ) {
-        var c1 = pub.circFromSeg(seg, "A"),
-            c2 = pub.circFromSeg(seg, "B");
-        var inter = pub.findCircsIntersection(c1,c2);
+    pub.Prop1 = function( r, seg ) {
+        var c1 = pub.circFromSeg ( r, seg, "A"),
+            c2 = pub.circFromSeg ( r, seg, "B");
+        var inter = pub.findCircsIntersection ( r, c1, c2 );
 
-        var Aside = new pub.Segment(seg.A, inter),
-            Bside = new pub.Segment(seg.B, inter);
+        var Aside = new pub.Segment ( r, seg.A, inter ),
+            Bside = new pub.Segment ( r, seg.B, inter );
 
         return new pub.EleGroup(
             {
