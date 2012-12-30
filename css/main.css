@@ -11,6 +11,8 @@ textarea {
 }
 
 body {
+    width: 748px;
+    margin: 40px auto;
     font-size: 1em;
     line-height: 1.4;
 }
