@@ -24,3 +24,10 @@ All right angles are equal to one another.
 ### Postulate 5
 ## Common Notions
 ## Propositions
+### Proposition 1
+Given a straight line segment, we can construct an equilateral triangle on that segment.
+
+<div id="Rprop1" class="raph_container"></div>
+
+Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this.
+
