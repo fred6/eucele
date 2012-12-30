@@ -8,6 +8,14 @@ Some wise words go here. 2000 year old book. blah blah.
 
 # Book 1
 ## Definitions
+### Point
+A **point** is an entity with position but not magnitude.
+
+### Lines
+A **line** is a length without width or height. Some lines are curvy (like, as  we shall see, the perimeter of a circle), but lines that are not curvy are **straight lines**.
+
+The endpoints of a line are points.
+
 ## Postulates
 ### Postulate 1
 A line segment can be drawn between any two points.
