@@ -43,6 +43,7 @@ a, a:visited {
 }
 
 #popupdiv {
+    position: absolute;
     background-color: #fff;
     border: 1px solid #666;
     padding: 7px;

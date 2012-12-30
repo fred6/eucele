@@ -1,20 +1,20 @@
 // Based on http://ignorethecode.net/blog/2010/04/20/footnotes/
 define(["jquery"], function( $ ) {
-    return {
-    footnotetimeout: false,
+    var j = {};
+    j.footnotetimeout = false;
 
-    setup: function() {
+    j.setup = function() {
         var footnotelinks = $("p > a[href^='#postulate']")
         
-        footnotelinks.unbind('mouseover',this.footnoteover);
-        footnotelinks.unbind('mouseout',this.footnoteoout);
+        footnotelinks.unbind('mouseover',j.footnoteover);
+        footnotelinks.unbind('mouseout',j.footnoteoout);
         
-        footnotelinks.bind('mouseover',this.footnoteover);
-        footnotelinks.bind('mouseout',this.footnoteoout);
-    },
+        footnotelinks.bind('mouseover',j.footnoteover);
+        footnotelinks.bind('mouseout',j.footnoteoout);
+    };
 
-    footnoteover: function() {
-        clearTimeout(this.footnotetimeout);
+    j.footnoteover = function() {
+        clearTimeout(j.footnotetimeout);
         $("#popupdiv").stop();
         $("#popupdiv").remove();
         
@@ -23,8 +23,8 @@ define(["jquery"], function( $ ) {
     
         var div = $(document.createElement('div'));
         div.attr('id','popupdiv');
-        div.bind('mouseover',this.divover);
-        div.bind('mouseout',this.footnoteoout);
+        div.bind('mouseover',j.divover);
+        div.bind('mouseout',j.footnoteoout);
 
         var el = document.getElementById(id);
         var divtext = (function(a) { 
@@ -32,10 +32,6 @@ define(["jquery"], function( $ ) {
             })( id.replace ( '-', ' ' ) );
         div.html(divtext);
         
-        div.css({
-            position:'absolute',
-            opacity:0.9
-        });
         $(document.body).append(div);
 
         var left = position.left;
@@ -45,29 +41,32 @@ define(["jquery"], function( $ ) {
         if(top + div.height() > $(window).height() + $(window).scrollTop())
             top = position.top - div.height() - 15;
         div.css({
-            left:left,
-            top:top
+            left: left,
+            top: top,
+            opacity: 0.9
         });
-    },
+    };
 
-    footnoteoout: function() {
-        this.footnotetimeout = setTimeout(function() {
-            $("#popupdiv").animate(
-                { opacity: 0 },
-                600,
-                function() {
-                    $("#popupdiv").remove();
-                });
-        },100);
-    },
+    j.removePopup = function() {
+        $("#popupdiv").animate(
+            { opacity: 0 },
+            600,
+            function() {
+                $("#popupdiv").remove();
+            }
+        );
+    };
 
-    divover: function() {
-        clearTimeout(this.footnotetimeout);
+    j.footnoteoout = function() {
+        j.footnotetimeout = setTimeout ( function() { j.removePopup() }, 100 );
+    };
+
+
+    j.divover = function() {
+        clearTimeout(j.footnotetimeout);
         $("#popupdiv").stop();
-        $("#popupdiv").css({
-                opacity: 0.9
-        });
-    }
+        $("#popupdiv").css({ opacity: 0.9 });
+    };
 
-    } // return
+    return j;
 });
