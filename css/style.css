@@ -14,6 +14,10 @@ h1 {
     line-height: 1.1em;
 }
 
+ul {
+    line-height: 1.5em;
+}
+
 #cover {
     color: #222;
     margin-bottom: 40px;
@@ -32,4 +36,8 @@ h1 {
 
 hgroup {
     margin-bottom: 40px;
+}
+
+a, a:visited {
+    color: #0d55d0;
 }
