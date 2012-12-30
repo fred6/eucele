@@ -58,3 +58,10 @@ Euclid doesn't really prove that the two circles must intersect, he basically as
 Given a line segment and a point, we can construct a line segment of equal length to the original segment at the point.
 
 <div id="Rprop2" class="raph_container"></div>
+
+#### Proof
+Arbitrarily select one of the endpoints, say, **B**. We can draw a line segment between **B** and **C** and then use that segment as a base for an equilateral triangle. Let's call the other point in the triangle (the one not **B** or **C**) **D**.
+
+First we'll draw a circle, call it **X**, centered at **B** with radius of **AB**. Now extend **DB** to some arbitrary point past circle **X**. We can find the intersection of this line and **X**, call it point **E**.
+
+**DE** can now be used as the radius for a circle centered at **D**.
