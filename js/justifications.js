@@ -1,20 +1,20 @@
 // Based on http://ignorethecode.net/blog/2010/04/20/footnotes/
 define(["jquery"], function( $ ) {
     var j = {};
-    j.footnotetimeout = false;
+    j.popuptimeout = false;
 
     j.setup = function() {
-        var footnotelinks = $("p > a[href^='#postulate']")
+        var popup_links = $("p > a[href^='#post'], p > a[href^='#prop']")
         
-        footnotelinks.unbind('mouseover',j.footnoteover);
-        footnotelinks.unbind('mouseout',j.footnoteoout);
+        popup_links.unbind('mouseover',j.linkover);
+        popup_links.unbind('mouseout',j.linkout);
         
-        footnotelinks.bind('mouseover',j.footnoteover);
-        footnotelinks.bind('mouseout',j.footnoteoout);
+        popup_links.bind('mouseover',j.linkover);
+        popup_links.bind('mouseout',j.linkout);
     };
 
-    j.footnoteover = function() {
-        clearTimeout(j.footnotetimeout);
+    j.linkover = function() {
+        clearTimeout(j.popuptimeout);
         $("#popupdiv").stop();
         $("#popupdiv").remove();
         
@@ -24,7 +24,7 @@ define(["jquery"], function( $ ) {
         var div = $(document.createElement('div'));
         div.attr('id','popupdiv');
         div.bind('mouseover',j.divover);
-        div.bind('mouseout',j.footnoteoout);
+        div.bind('mouseout',j.linkout);
 
         var el = document.getElementById(id);
         var divtext = (function(a) { 
@@ -57,13 +57,13 @@ define(["jquery"], function( $ ) {
         );
     };
 
-    j.footnoteoout = function() {
-        j.footnotetimeout = setTimeout ( function() { j.removePopup() }, 100 );
+    j.linkout = function() {
+        j.popuptimeout = setTimeout ( function() { j.removePopup() }, 100 );
     };
 
 
     j.divover = function() {
-        clearTimeout(j.footnotetimeout);
+        clearTimeout(j.popuptimeout);
         $("#popupdiv").stop();
         $("#popupdiv").css({ opacity: 0.9 });
     };
