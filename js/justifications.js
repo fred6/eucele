@@ -4,7 +4,10 @@ define(["jquery"], function( $ ) {
     j.popuptimeout = false;
 
     j.setup = function() {
-        var popup_links = $("p > a[href^='#post'], p > a[href^='#prop']")
+        var asel = ["p > a[href^='#post']",
+                    "p > a[href^='#prop']", 
+                    "p > a[href^='#note']"]; 
+        var popup_links = $(asel.join(','))
         
         popup_links.unbind('mouseover',j.linkover);
         popup_links.unbind('mouseout',j.linkout);
@@ -27,9 +30,14 @@ define(["jquery"], function( $ ) {
         div.bind('mouseout',j.linkout);
 
         var el = document.getElementById(id);
-        var divtext = (function(a) { 
+        var divtext;
+        if ( id.slice(0, 4) === 'note' ) {
+            divtext = $("#"+id).text();
+        } else {
+            divtext = (function(a) { 
             return a.charAt(0).toUpperCase() + a.slice(1);
             })( id.replace ( '-', ' ' ) );
+        }
         div.html(divtext);
         
         $(document.body).append(div);

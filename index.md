@@ -53,7 +53,7 @@ Given a straight line segment **AB**, we can construct an equilateral triangle w
 
 [Now we can draw a straight line segment between **A** and **C**,](#postulate-1) and [another between **B** and **C**.](#postulate-1) ■
 
-Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.
+<div id="note-1" style="display: none">Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.</div>
 
 
 ### Proposition 2

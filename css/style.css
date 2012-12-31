@@ -42,7 +42,9 @@ a, a:visited {
     color: #0d55d0;
 }
 
-p a[href^="#post"], p a[href^="#prop"] {
+p a[href^="#post"],
+p a[href^="#note"],
+p a[href^="#prop"] {
     color: #222;
     text-decoration: none;
     border-bottom: 1px dotted #999;

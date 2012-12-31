@@ -33,7 +33,7 @@ define( ["jquery", "raphael", "units", "justifications"], function( $, Raphael, 
             units.b1[unit].init(raph);
         });
 
-        
+
         justifications.setup();
 
     }; // start
