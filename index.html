@@ -7,6 +7,9 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <style type="text/css">
+    q { quotes: "“" "”" "‘" "’"; }
+  </style>
       <meta name="viewport" content="width=device-width">
       <link rel="stylesheet" href="css/style.css">
       <script data-main="js/main" src="js/require.js"></script>
@@ -14,8 +17,8 @@
 <body>
     <div id="cover" style="text-align: center">
         <hgroup>
-            <h1>Euclidean Elements</h1>
-            <h2>A web-based fork of Euclid's Elements</h2>
+            <h1>Euclidean Elements (alpha)</h1>
+            <h2>A hypertext adaptation of Euclid's Elements</h2>
         </hgroup>
         <img src="img/PythagThm.png" alt="Euclid's construction of the Pythagorean Theorem" style="margin-left: auto; margin-right: auto"/>
     </div>
@@ -24,28 +27,44 @@
 <li><a href="#preface">Preface</a></li>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#book-1">Book 1</a><ul>
-<li><a href="#definitions">Definitions</a></li>
+<li><a href="#definitions">Definitions</a><ul>
+<li><a href="#point">Point</a></li>
+<li><a href="#lines">Lines</a></li>
+</ul></li>
 <li><a href="#postulates">Postulates</a><ul>
 <li><a href="#postulate-1">Postulate 1</a></li>
 <li><a href="#postulate-2">Postulate 2</a></li>
 <li><a href="#postulate-3">Postulate 3</a></li>
 <li><a href="#postulate-4">Postulate 4</a></li>
 <li><a href="#postulate-5">Postulate 5</a></li>
+<li><a href="#postulate-discussion">Postulate discussion</a></li>
 </ul></li>
 <li><a href="#common-notions">Common Notions</a></li>
 <li><a href="#propositions">Propositions</a><ul>
-<li><a href="#proposition-1">Proposition 1</a></li>
-<li><a href="#proposition-2">Proposition 2</a></li>
+<li><a href="#proposition-1">Proposition 1</a><ul>
+<li><a href="#proof">Proof</a></li>
+</ul></li>
+<li><a href="#proposition-2">Proposition 2</a><ul>
+<li><a href="#proof-1">Proof</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
 </nav>
 <h1 id="preface"><a href="#TOC">Preface</a></h1>
+<p>This page/site/book/hypertext learning document, both words and code, is licensed under <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC-0</a>. You can find all files on <a href="https://github.com/fred6/eucele">github</a>, discuss issues, submit pull requests, fork it, whatev.</p>
 <p>The colors are heavily inspired by <a href="http://www.math.ubc.ca/~cass/Euclid/byrne.html">Oliver Byrne’s version of the Elements</a> (the colors themselves are a direct ripoff, but I’ve used them in different ways). I’ve also made use of <a href="http://farside.ph.utexas.edu/euclid.html">Richard Fitzpatrick’s translation of the Elements</a>, as well as <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/bookI.html">D.E. Joyce’s site on the Elements</a>, which is, of course, the original web adaptation of Euclid. <a href="http://www.proofwiki.org/wiki/ProofWiki:Books/Euclid/The_Elements">Proof Wiki’s presentation</a> has been useful as well.</p>
+<p>A word to math aficionados: I’m clearly not aiming for absolute rigor here (c.f. my section of definitions for lines, where I describe lines as <q>curvy</q> without defining what that means). There are deeper problems with Euclid’s postulates, and anyway others far more competent than I have cleaned all this up (see <a href="http://en.wikipedia.org/wiki/Hilbert&#39;s_axioms">Hilbert’s <em>Foundations of Geometry</em></a>).</p>
 <h1 id="introduction"><a href="#TOC">Introduction</a></h1>
 <p>Some wise words go here. 2000 year old book. blah blah.</p>
+<p>I use <q>■</q> to indicate that a proof is over. This is called a <a href="http://en.wikipedia.org/wiki/Tombstone_(typography)">halmos or tombstone</a>. This is used in place of <a href="http://en.wikipedia.org/wiki/Q.E.D.">QED</a></p>
 <h1 id="book-1"><a href="#TOC">Book 1</a></h1>
 <h2 id="definitions"><a href="#TOC">Definitions</a></h2>
+<h3 id="point"><a href="#TOC">Point</a></h3>
+<p>A <strong>point</strong> is an entity with position but not magnitude.</p>
+<h3 id="lines"><a href="#TOC">Lines</a></h3>
+<p>A <strong>line</strong> is a length without width or height. Some lines are curvy (like, as we shall see, the perimeter of a circle), but lines that are not curvy are <strong>straight lines</strong>.</p>
+<p>The endpoints of a line are points.</p>
 <h2 id="postulates"><a href="#TOC">Postulates</a></h2>
 <h3 id="postulate-1"><a href="#TOC">Postulate 1</a></h3>
 <p>A line segment can be drawn between any two points.</p>
@@ -56,16 +75,30 @@
 <h3 id="postulate-4"><a href="#TOC">Postulate 4</a></h3>
 <p>All right angles are equal to one another.</p>
 <h3 id="postulate-5"><a href="#TOC">Postulate 5</a></h3>
+<h3 id="postulate-discussion"><a href="#TOC">Postulate discussion</a></h3>
+<p>Significance of the axiomatic method in general (I’m not qualified for this probably). We have 3 construction axioms, which really means that, in this book, we have a compass and a straight edge. (But notice, due to prop. 2, that we can’t reliably preserve distance via the compass when we pick it up from the paper. Otherwise we would immediately have the ability to draw a line of length equal to <strong>Line 1</strong> at an arbitrary point <strong>C</strong>.</p>
+<p>Should cover the infamous postulate 5 as well. Everything up to postulate 29 can be considered <q>neutral geometry</q>, because none of it utilizes postulate 5. In fact, we could almost split Euclid’s Book 1 into two books: 1-28 is Neutral plane geometry, and 29+ is euclidean plane geometry.</p>
 <h2 id="common-notions"><a href="#TOC">Common Notions</a></h2>
 <h2 id="propositions"><a href="#TOC">Propositions</a></h2>
 <h3 id="proposition-1"><a href="#TOC">Proposition 1</a></h3>
-<p>Given a straight line segment, we can construct an equilateral triangle on that segment.</p>
+<p>Given a straight line segment <strong>AB</strong>, we can construct an equilateral triangle with that segment as one of the sides.</p>
 <div id="Rprop1" class="raph_container"></div>
 
-<p>Euclid doesn’t really prove that the two circles must intersect, he basically assumes it. You need to add additional postulates to cover this.</p>
+<h4 id="proof"><a href="#TOC">Proof</a></h4>
+<p><a href="#postulate-3">We can draw a circle with center at <strong>A</strong> and a radius of <strong>AB</strong>.</a> <a href="#postulate-3">We can also draw a circle with center at <strong>B</strong> and the same radius.</a> <a href="#note-1">The two circles intersect at a point, call it <strong>C</strong>.</a></p>
+<p><a href="#postulate-1">Now we can draw a straight line segment between <strong>A</strong> and <strong>C</strong>,</a> and <a href="#postulate-1">another between <strong>B</strong> and <strong>C</strong>.</a> ■</p>
+<div id="note-1" style="display: none">
+Euclid doesn’t really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.
+</div>
+
+
 <h3 id="proposition-2"><a href="#TOC">Proposition 2</a></h3>
 <p>Given a line segment and a point, we can construct a line segment of equal length to the original segment at the point.</p>
 <div id="Rprop2" class="raph_container"></div>
 
+<h4 id="proof-1"><a href="#TOC">Proof</a></h4>
+<p>Arbitrarily select one of the endpoints, say, <strong>B</strong>. <a href="#postulate-1">We can draw a line segment between <strong>B</strong> and <strong>C</strong></a> and then <a href="#proposition-1">use that segment as a base for an equilateral triangle</a>. Let’s call the other point in the triangle (the one not <strong>B</strong> or <strong>C</strong>) <strong>D</strong>.</p>
+<p><a href="#postulate-3">First we’ll draw a circle, call it <strong>X</strong>, centered at <strong>B</strong> with radius of <strong>AB</strong>.</a> <a href="#postulate-2">Now extend <strong>DB</strong> to some arbitrary point past circle <strong>X</strong>.</a> <a href="#note-2">We can find the intersection of this line and <strong>X</strong>, call it point <strong>E</strong>.</a></p>
+<p>We don’t quite have a notion of length, but if we did, notice that we would be able to say that length(<strong>DE</strong>) = length(<strong>DB</strong>) + length(<strong>AB</strong>). Since our aim is to draw a line with length equal to <strong>AB</strong> at point <strong>C</strong>, we could achieve this by somehow cutting off a section equal in length to <strong>DB</strong> from a line equal in length <strong>DE</strong> as long as the line passes through <strong>C</strong> appropriately. The good news is that we have a line equal in length to <strong>DB</strong> (actually, we have two of them, remember the equilateral triangle we built earlier). So <a href="#postulate-3"><strong>DE</strong> can now be used as the radius for a circle centered at <strong>D</strong>.</a>.</p>
 </body>
 </html>
