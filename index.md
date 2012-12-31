@@ -62,8 +62,8 @@ Given a line segment and a point, we can construct a line segment of equal lengt
 <div id="Rprop2" class="raph_container"></div>
 
 #### Proof
-Arbitrarily select one of the endpoints, say, **B**. We can draw a line segment between **B** and **C** and then use that segment as a base for an equilateral triangle. Let's call the other point in the triangle (the one not **B** or **C**) **D**.
+Arbitrarily select one of the endpoints, say, **B**. [We can draw a line segment between **B** and **C**](#postulate-1) and then [use that segment as a base for an equilateral triangle](#proposition-1). Let's call the other point in the triangle (the one not **B** or **C**) **D**.
 
-First we'll draw a circle, call it **X**, centered at **B** with radius of **AB**. Now extend **DB** to some arbitrary point past circle **X**. We can find the intersection of this line and **X**, call it point **E**.
+[First we'll draw a circle, call it **X**, centered at **B** with radius of **AB**.](#postulate-3) [Now extend **DB** to some arbitrary point past circle **X**.](#postulate-2) [We can find the intersection of this line and **X**, call it point **E**.](#note-2)
 
-**DE** can now be used as the radius for a circle centered at **D**.
+We don't quite have a notion of length, but if we did, notice that we would be able to say that length(**DE**) = length(**DB**) + length(**AB**). Since our aim is to draw a line with length equal to **AB** at point **C**, we could achieve this by somehow cutting off a section equal in length to **DB** from a line equal in length **DE** as long as the line passes through **C** appropriately. The good news is that we have a line equal in length to **DB** (actually, we have two of them, remember the equilateral triangle we built earlier). So [**DE** can now be used as the radius for a circle centered at **D**.](#postulate-3). 
