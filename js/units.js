@@ -1,10 +1,14 @@
-// (c) 2012 fred6
-// This code is released under the MIT license.
+// Written in 2012 by fred6 frexids@gmail.com
+//
+// To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty. 
+//
+// See LICENSE (file) for a copy of the CC0 Public Domain Dedication, or see <http://creativecommons.org/publicdomain/zero/1.0/>. 
+
 define(["euclib"], function( euclib ) {
     "use strict";
 
-    // this is probably not the proper place for the colors, but I need to think about where
-    // they should go
+    // this is probably not the proper place for the colors, but I need to think about 
+    // where they should go
     var pub = {},
         red = "#d43700",
         yellow = "#ffb200",
@@ -19,8 +23,17 @@ define(["euclib"], function( euclib ) {
     };
 
     Unit.prototype.goTo = function( state ) {
+        var i, thisChild;
+        for(i = 0; i < this.children.length; i++) {
+            thisChild = this.children[i];
+
+            if(thisChild.state <= state) {
+                thisChild.eucObj.show(thisChild.stroke);
+            } else {
+                thisChild.eucObj.hide();
+            }
+        }
         this.currentState = state;
-        this.CG.setState( state );
     };
 
     Unit.prototype.stepLeft = function() {
@@ -36,63 +49,32 @@ define(["euclib"], function( euclib ) {
     };
 
     Unit.prototype.disappear = function() {
-        this.goTo( -1 );
+        this.goTo ( -1 );
     };
 
     Unit.prototype.init = function( r ) {
-        var children = this.initfn ( r );
-        this.CG = new CanvasGod ( children );
-        this.numStates = this.CG.numStates;
-        this.currentState = 0;
-        this.goTo ( 0 );
-    };
+        this.children = this.initfn ( r );
 
-
-    // CanvasGod is an object that has a collection of canvas objects
-    // (children). each object has (for now) a single number attached,
-    // which indicates the step when the object becomes visible on the canvas
-    //
-    // for objects that appear and disappear (and possibly reappear again),
-    // we can use a list of numbers [a, b, c]
-    // where the first number indicates the step when it appears, the second
-    // indicates the number where it disappears, the third when it re-appears, etc.
-    // I'm starting off with a single number because I'm not certain we need the
-    // added functionality
-    CanvasGod = function( children ) {
-        // each child is an object consisting of a Euclib object and a number
-        // I could verify that its valid, but I'm the only one using this, so I probably
-        // just won't bother!
-        this.children = children;
         this.numStates = 0;
         for ( var i = 0; i < this.children.length; i++ ) {
             if ( this.children[i].state > this.numStates ) {
                 this.numStates = this.children[i].state;
             }
         }
+
         this.numStates += 1; // children.state is 0-referenced
+
+        this.goTo ( 0 );
     };
 
-    CanvasGod.prototype.setState = function( state ) {
-        var i, thisChild;
-        for(i = 0; i < this.children.length; i++) {
-            thisChild = this.children[i];
 
-            if(thisChild.state <= state) {
-                thisChild.eucObj.show(thisChild.stroke);
-            } else {
-                thisChild.eucObj.hide();
-            }
-        }
-    };
-
-    
     /*** Specific units ***/
     pub.b1 = {};
 
     // Book 1 Prop 1
 
     // helper
-    function createCGChild(eucObj, state, stroke) {
+    function createUnitObj(eucObj, state, stroke) {
         var obj = {
             eucObj: eucObj,
             state: state
@@ -107,8 +89,8 @@ define(["euclib"], function( euclib ) {
 
 
     pub.b1.prop1 = new Unit(function( r ) {
-        var A = new euclib.Point ( r, 150, 180.5 ),
-            B = new euclib.Point ( r, 220, 180.5 ),
+        var A = new euclib.Point ( r, 260, 180.5 ),
+            B = new euclib.Point ( r, 330, 180.5 ),
             seg = new euclib.Segment ( r, A, B ),
             c1 = euclib.circFromSeg ( r, seg, "A" ),
             c2 = euclib.circFromSeg ( r, seg, "B" ),
@@ -117,12 +99,12 @@ define(["euclib"], function( euclib ) {
             Rside = new euclib.Segment ( r, B, inter );
 
         return [
-            createCGChild(seg, 0),
-            createCGChild(c1, 1, red),
-            createCGChild(c2, 2, yellow),
-            createCGChild(inter, 3),
-            createCGChild(Lside, 4, red),
-            createCGChild(Rside, 5, yellow)
+            createUnitObj(seg, 0),
+            createUnitObj(c1, 1, red),
+            createUnitObj(c2, 2, yellow),
+            createUnitObj(inter, 3),
+            createUnitObj(Lside, 4, red),
+            createUnitObj(Rside, 5, yellow)
         ];
     }); // prop1
     
@@ -154,15 +136,15 @@ define(["euclib"], function( euclib ) {
             inter2pt = euclib.findCircCenterSegIntersection ( r, ext_inter_seg_circ, last_ext_seg );
 
         return [
-            createCGChild(seg, 0),
-            createCGChild(C, 0),
-            createCGChild(segBC, 1, gray),
-            createCGChild(eqtri, 2, red),
-            createCGChild(seg_circ, 3, blue),
-            createCGChild(ext_seg, 4, yellow),
-            createCGChild(ext_inter_seg_circ, 5, red),
-            createCGChild(last_ext_seg, 6, red),
-            createCGChild(inter2pt, 7)
+            createUnitObj(seg, 0),
+            createUnitObj(C, 0),
+            createUnitObj(segBC, 1, gray),
+            createUnitObj(eqtri, 2, red),
+            createUnitObj(seg_circ, 3, blue),
+            createUnitObj(ext_seg, 4, yellow),
+            createUnitObj(ext_inter_seg_circ, 5, red),
+            createUnitObj(last_ext_seg, 6, red),
+            createUnitObj(inter2pt, 7)
         ];
 
     }); // prop2
@@ -183,12 +165,12 @@ define(["euclib"], function( euclib ) {
                 seg1_circ_inter = euclib.findCircCenterSegIntersection(seg2_circ, newseg);
 
             return [
-                createCGChild(seg1, 0),
-                createCGChild(seg2, 0, blue),
-                createCGChild(C, 0),
-                createCGChild(newseg, 1, yellow),
-                createCGChild(seg2_circ, 2, blue),
-                createCGChild(seg1_circ_inter, 3),
+                createUnitObj(seg1, 0),
+                createUnitObj(seg2, 0, blue),
+                createUnitObj(C, 0),
+                createUnitObj(newseg, 1, yellow),
+                createUnitObj(seg2_circ, 2, blue),
+                createUnitObj(seg1_circ_inter, 3),
             ];
         }
     ); // b1prop3
@@ -221,27 +203,21 @@ define(["euclib"], function( euclib ) {
 
 
             return [
-                createCGChild(segAB, 0, red),
-                createCGChild(segBC, 0, yellow),
-                createCGChild(segAC, 0, blue),
-                createCGChild(group1, 1, red),
-                createCGChild(group2, 1, yellow),
-                createCGChild(group3, 1, blue),
-                createCGChild(segCD, 2, red),
-                createCGChild(segA_BCT, 2, yellow),
-                createCGChild(segB_ACS, 2, blue),
-                createCGChild(segC_ABS, 3),
-                createCGChild(segC_ABT, 3)
+                createUnitObj(segAB, 0, red),
+                createUnitObj(segBC, 0, yellow),
+                createUnitObj(segAC, 0, blue),
+                createUnitObj(group1, 1, red),
+                createUnitObj(group2, 1, yellow),
+                createUnitObj(group3, 1, blue),
+                createUnitObj(segCD, 2, red),
+                createUnitObj(segA_BCT, 2, yellow),
+                createUnitObj(segB_ACS, 2, blue),
+                createUnitObj(segC_ABS, 3),
+                createUnitObj(segC_ABT, 3)
             ];
-
         }
     );
 
-
-    // turn unit definitions into actual unit objects
-    // something about this code seems deeply wrong to me but I'm not smart enough
-    // to figure out an alternative right now
-    var unit, udef, CG;
 //    for ( unit in b1 ) {
 //       if ( b1.hasOwnProperty ( unit ) ) {
 
