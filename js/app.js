@@ -27,7 +27,7 @@ define( ["jquery", "raphael", "units", "justifications"], function( $, Raphael, 
                 unit = $this.attr('id').slice(1),
                 thisHeight = heights[Number(unit.slice(4)) - 1];
 
-            var raph = Raphael($(raph_div).appendTo($this)[0], 600, thisHeight);
+            var raph = Raphael($(raph_div).appendTo($this)[0], 560, thisHeight);
             $(button_div).appendTo($this);
 
             units.b1[unit].init(raph);
