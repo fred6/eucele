@@ -15,6 +15,7 @@
       <script data-main="js/main" src="js/require.js"></script>
 </head>
 <body>
+<div id="container">
     <div id="cover" style="text-align: center">
         <hgroup>
             <h1>Euclidean Elements (alpha)</h1>
@@ -46,6 +47,9 @@
 </ul></li>
 <li><a href="#proposition-2">Proposition 2</a><ul>
 <li><a href="#proof-1">Proof</a></li>
+</ul></li>
+<li><a href="#proposition-3">Proposition 3</a><ul>
+<li><a href="#proof-2">Proof</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -85,20 +89,53 @@
 <div id="Rprop1" class="raph_container"></div>
 
 <h4 id="proof"><a href="#TOC">Proof</a></h4>
-<p><a href="#postulate-3">We can draw a circle with center at <strong>A</strong> and a radius of <strong>AB</strong>.</a> <a href="#postulate-3">We can also draw a circle with center at <strong>B</strong> and the same radius.</a> <a href="#note-1">The two circles intersect at a point, call it <strong>C</strong>.</a></p>
-<p><a href="#postulate-1">Now we can draw a straight line segment between <strong>A</strong> and <strong>C</strong>,</a> and <a href="#postulate-1">another between <strong>B</strong> and <strong>C</strong>.</a> ■</p>
+<p><span id="prop1_1" class="proofstep e_post3">We can draw a circle with center at <strong>A</strong> and a radius of <strong>AB</strong>.</span> <span id="prop1_2" class="proofstep e_post3">We can also draw a circle with center at <strong>B</strong> and the same radius.</span> <span id="prop1_3" class="proofstep e_note1">The two circles intersect at a point, call it <strong>C</strong>.</span></p>
+<p><span id="prop1_4" class="proofstep e_post1">Now we can draw a straight line segment between <strong>A</strong> and <strong>C</strong>,</span> and <span id="prop1_5" class="proofstep e_post1">another between <strong>B</strong> and <strong>C</strong>.</span> ■</p>
+<h3 id="proposition-2"><a href="#TOC">Proposition 2</a></h3>
+<p>Given a line segment <strong>AB</strong> and a point <strong>C</strong>, we can construct a line segment of equal length to the original segment at the point.</p>
+<div id="Rprop2" class="raph_container"></div>
+
+<h4 id="proof-1"><a href="#TOC">Proof</a></h4>
+<p>Arbitrarily select one of the endpoints, say, <strong>B</strong>. <span id="prop2_1" class="proofstep e_post1">We can draw a line segment between <strong>B</strong> and <strong>C</strong></span> and then <span id="prop2_2" class="proofstep e_prop1">use that segment as a base for an equilateral triangle.</span> Let’s call the other point in the triangle (the one not <strong>B</strong> or <strong>C</strong>) <strong>D</strong>.</p>
+<p><span id="prop2_3" class="proofstep e_post3">First we’ll draw a circle, call it <strong>X</strong>, centered at <strong>B</strong> with radius of <strong>AB</strong>.</span> <span id="prop2_4" class="proofstep e_post2">Now extend <strong>DB</strong> to some arbitrary point past circle <strong>X</strong>.</span> <span id="prop2_5" class="proofstep e_note2">We can find the intersection of this line and <strong>X</strong>, call it point <strong>E</strong>.</span></p>
+<p>We don’t quite have a notion of length, but if we did, notice that we would be able to say that length(<strong>DE</strong>) = length(<strong>DB</strong>) + length(<strong>AB</strong>). Since our aim is to draw a line with length equal to <strong>AB</strong> at point <strong>C</strong>, we could achieve this by somehow cutting off a section equal in length to <strong>DB</strong> from a line equal in length <strong>DE</strong> as long as the line passes through <strong>C</strong> appropriately. The good news is that we have a line equal in length to <strong>DB</strong> (actually, we have two of them, remember the equilateral triangle we built earlier). So <span id="prop2_6" class="proofstep e_post3"><strong>DE</strong> can now be used as the radius for a circle, call it circle <strong>Y</strong>, centered at <strong>D</strong>.</span></p>
+<p>Furthermore, <span id="prop2_7" class="proofstep e_post2">we can extend <strong>DC</strong> past circle <strong>Y</strong></span> and <span id="prop2_8" class="proofstep e_note2">find the intersection of this extended line and <strong>Y</strong></span> (like we did with the circle <strong>X</strong>). Calling this intersection point <strong>F</strong>, we know that <strong>DF</strong> is the same length as <strong>DE</strong> (they are radii for the same circle). We also know that they both have a subsegment of equal lengths: <strong>DB</strong> and <strong>DC</strong> are sides of an equilateral triangle, and they are subsegments of <strong>DE</strong> and <strong>DF</strong>, respectively. By throwing these subsements away, the remainders <strong>BE</strong> and <strong>CF</strong> are equal in length. Since <strong>BE</strong> is the same length as <strong>AB</strong> (they are, again, radii for the same circle), we have constructed a line equal in length to <strong>AB</strong> at point <strong>C</strong>. ■</p>
+<h3 id="proposition-3"><a href="#TOC">Proposition 3</a></h3>
+<p>Given two line segments, <strong>AB</strong> and <strong>CD</strong> of unequal length, we can cut off from the greater a line equal to the lesser.</p>
+<div id="Rprop3" class="raph_container"></div>
+
+<h4 id="proof-2"><a href="#TOC">Proof</a></h4>
+<p>Suppose <strong>AB</strong> longer. If we pick one of the endpoints of <strong>CD</strong> arbitrarily, say <strong>C</strong>, then <span id="prop3_1" class="proofstep e_prop2">we can draw a line <strong>CE</strong> equal in length to <strong>AB</strong> at <strong>C</strong>.</span></p>
+<p><span id="prop3_2" class="proofstep e_post3">Now we can draw the circle at <strong>C</strong> with radius <strong>CD</strong>.</span> This circle intersects <strong>CE</strong> at a point, call it <strong>F</strong>. The segment <strong>CF</strong> is the desired line. ■</p>
+<div id="post-1" style="display: none">
+<strong>Postulate 1</strong> - A line segment can be constructed between any two points.
+</div>
+
+<div id="post-2" style="display: none">
+<strong>Postulate 2</strong> - A line segment can be extended indefinitely.
+</div>
+
+<div id="post-3" style="display: none">
+<strong>Postulate 3</strong> - Given a radius, a circle centered at any given point can be constructed.
+</div>
+
+<div id="prop-1" style="display: none">
+<strong>Proposition 1</strong> - Given a line segment, we can construct an equilateral triangle with the segment as one of the sides.
+</div>
+
+<div id="prop-2" style="display: none">
+<strong>Proposition 2</strong> - Given a line segment, we can construct an equal line at an arbitrary given point.
+</div>
+
 <div id="note-1" style="display: none">
 Euclid doesn’t really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.
 </div>
 
+<div id="note-2" style="display: none">
+I’m not sure if this is technically proved, but it’s kind of obvious, since we <em>built</em> the line so that it would intersect the circle. If it’s not rigorously proved, it’s a technicality not worth paying attention to.
+</div>
 
-<h3 id="proposition-2"><a href="#TOC">Proposition 2</a></h3>
-<p>Given a line segment and a point, we can construct a line segment of equal length to the original segment at the point.</p>
-<div id="Rprop2" class="raph_container"></div>
 
-<h4 id="proof-1"><a href="#TOC">Proof</a></h4>
-<p>Arbitrarily select one of the endpoints, say, <strong>B</strong>. <a href="#postulate-1">We can draw a line segment between <strong>B</strong> and <strong>C</strong></a> and then <a href="#proposition-1">use that segment as a base for an equilateral triangle</a>. Let’s call the other point in the triangle (the one not <strong>B</strong> or <strong>C</strong>) <strong>D</strong>.</p>
-<p><a href="#postulate-3">First we’ll draw a circle, call it <strong>X</strong>, centered at <strong>B</strong> with radius of <strong>AB</strong>.</a> <a href="#postulate-2">Now extend <strong>DB</strong> to some arbitrary point past circle <strong>X</strong>.</a> <a href="#note-2">We can find the intersection of this line and <strong>X</strong>, call it point <strong>E</strong>.</a></p>
-<p>We don’t quite have a notion of length, but if we did, notice that we would be able to say that length(<strong>DE</strong>) = length(<strong>DB</strong>) + length(<strong>AB</strong>). Since our aim is to draw a line with length equal to <strong>AB</strong> at point <strong>C</strong>, we could achieve this by somehow cutting off a section equal in length to <strong>DB</strong> from a line equal in length <strong>DE</strong> as long as the line passes through <strong>C</strong> appropriately. The good news is that we have a line equal in length to <strong>DB</strong> (actually, we have two of them, remember the equilateral triangle we built earlier). So <a href="#postulate-3"><strong>DE</strong> can now be used as the radius for a circle centered at <strong>D</strong>.</a>.</p>
+</div>
 </body>
 </html>
