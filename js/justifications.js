@@ -26,8 +26,6 @@ define(["jquery"], function( $ ) {
             }
         }
 
-        console.log(id);
-
         var position = {
             top: $(this).offset().top,
             left: $('div#container').offset().left
@@ -35,15 +33,11 @@ define(["jquery"], function( $ ) {
     
         var div = $(document.createElement('div'));
         div.attr('id','popupdiv');
-
-        var el = document.getElementById(id);
         div.html($("#"+id).html());
-        
         $(document.body).append(div);
 
-        var left = position.left - 190;
         div.css({
-            left: left,
+            left: position.left - 190,
             top: position.top
         });
     };
