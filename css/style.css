@@ -49,12 +49,12 @@ a, a:visited {
     color: #0d55d0;
 }
 
-p a[href^="#post"],
-p a[href^="#note"],
-p a[href^="#prop"] {
+span.proofstep {
     color: #222;
     text-decoration: none;
     border-bottom: 1px dotted #999;
+    cursor: pointer;
+    padding: 1px;
 }
 
 #popupdiv {
@@ -62,5 +62,11 @@ p a[href^="#prop"] {
     background-color: #fff;
     border: 1px solid #666;
     padding: 7px;
-    width: 250px;
+    width: 150px;
+    font-size: 14px;
 }
+
+span.activestep {
+    background-color: #f98898;
+}
+

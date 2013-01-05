@@ -4,54 +4,47 @@ define(["jquery"], function( $ ) {
     j.popuptimeout = false;
 
     j.setup = function() {
-        var asel = ["p > a[href^='#post']",
-                    "p > a[href^='#prop']", 
-                    "p > a[href^='#note']"]; 
-        var popup_links = $(asel.join(','))
-        
-        popup_links.unbind('mouseover',j.linkover);
-        popup_links.unbind('mouseout',j.linkout);
-        
-        popup_links.bind('mouseover',j.linkover);
-        popup_links.bind('mouseout',j.linkout);
+        $("p").on("click", "span.proofstep", j.linkover);
     };
 
     j.linkover = function() {
         clearTimeout(j.popuptimeout);
         $("#popupdiv").stop();
         $("#popupdiv").remove();
+
+        $(".activestep").removeClass('activestep');
+        $(this).addClass('activestep');
         
-        var id = $(this).attr('href').substr(1);
-        var position = $(this).offset();
+        var c, id,
+            classlist = $(this).attr('class').split(' ');
+
+        for ( c = 0; c < classlist.length; c++ ) {
+            if ( classlist[c].substring(0, 2) === "e_" ) {
+                id = [classlist[c].substring ( 2, 6 ),
+                      "-",
+                      classlist[c].substring( 6 )].join('');
+            }
+        }
+
+        console.log(id);
+
+        var position = {
+            top: $(this).offset().top,
+            left: $('div#container').offset().left
+        };
     
         var div = $(document.createElement('div'));
         div.attr('id','popupdiv');
-        div.bind('mouseover',j.divover);
-        div.bind('mouseout',j.linkout);
 
         var el = document.getElementById(id);
-        var divtext;
-        if ( id.slice(0, 4) === 'note' ) {
-            divtext = $("#"+id).text();
-        } else {
-            divtext = (function(a) { 
-            return a.charAt(0).toUpperCase() + a.slice(1);
-            })( id.replace ( '-', ' ' ) );
-        }
-        div.html(divtext);
+        div.html($("#"+id).html());
         
         $(document.body).append(div);
 
-        var left = position.left;
-        if(left + 420  > $(window).width() + $(window).scrollLeft())
-            left = $(window).width() - 420 + $(window).scrollLeft();
-        var top = position.top+20;
-        if(top + div.height() > $(window).height() + $(window).scrollTop())
-            top = position.top - div.height() - 15;
+        var left = position.left - 190;
         div.css({
             left: left,
-            top: top,
-            opacity: 0.9
+            top: position.top
         });
     };
 
@@ -67,13 +60,6 @@ define(["jquery"], function( $ ) {
 
     j.linkout = function() {
         j.popuptimeout = setTimeout ( function() { j.removePopup() }, 100 );
-    };
-
-
-    j.divover = function() {
-        clearTimeout(j.popuptimeout);
-        $("#popupdiv").stop();
-        $("#popupdiv").css({ opacity: 0.9 });
     };
 
     return j;

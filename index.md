@@ -49,11 +49,9 @@ Given a straight line segment **AB**, we can construct an equilateral triangle w
 <div id="Rprop1" class="raph_container"></div>
 
 #### Proof
-[We can draw a circle with center at **A** and a radius of **AB**.](#postulate-3) [We can also draw a circle with center at **B** and the same radius.](#postulate-3) [The two circles intersect at a point, call it **C**.](#note-1)
+<span id="prop1_1" class="proofstep e_post3">We can draw a circle with center at **A** and a radius of **AB**.</span> <span id="prop1_2" class="proofstep e_post3">We can also draw a circle with center at **B** and the same radius.</span> <span id="prop1_3" class="proofstep e_note1">The two circles intersect at a point, call it **C**.</span>
 
-[Now we can draw a straight line segment between **A** and **C**,](#postulate-1) and [another between **B** and **C**.](#postulate-1) ■
-
-<div id="note-1" style="display: none">Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.</div>
+<span id="prop1_4" class="proofstep e_post1">Now we can draw a straight line segment between **A** and **C**,</span> and <span id="prop1_5" class="proofstep e_post1">another between **B** and **C**.</span> ■
 
 
 ### Proposition 2
@@ -62,15 +60,13 @@ Given a line segment **AB** and a point **C**, we can construct a line segment o
 <div id="Rprop2" class="raph_container"></div>
 
 #### Proof
-Arbitrarily select one of the endpoints, say, **B**. [We can draw a line segment between **B** and **C**](#postulate-1) and then [use that segment as a base for an equilateral triangle](#proposition-1). Let's call the other point in the triangle (the one not **B** or **C**) **D**.
+Arbitrarily select one of the endpoints, say, **B**. <span id="prop2_1" class="proofstep e_post1">We can draw a line segment between **B** and **C**</span> and then <span id="prop2_2" class="proofstep e_prop1">use that segment as a base for an equilateral triangle.</span> Let's call the other point in the triangle (the one not **B** or **C**) **D**.
 
-[First we'll draw a circle, call it **X**, centered at **B** with radius of **AB**.](#postulate-3) [Now extend **DB** to some arbitrary point past circle **X**.](#postulate-2) [We can find the intersection of this line and **X**, call it point **E**.](#note-2)
+<span id="prop2_3" class="proofstep e_post3">First we'll draw a circle, call it **X**, centered at **B** with radius of **AB**.</span> <span id="prop2_4" class="proofstep e_post2">Now extend **DB** to some arbitrary point past circle **X**.</span> <span id="prop2_5" class="proofstep e_note2">We can find the intersection of this line and **X**, call it point **E**.</span>
 
-We don't quite have a notion of length, but if we did, notice that we would be able to say that length(**DE**) = length(**DB**) + length(**AB**). Since our aim is to draw a line with length equal to **AB** at point **C**, we could achieve this by somehow cutting off a section equal in length to **DB** from a line equal in length **DE** as long as the line passes through **C** appropriately. The good news is that we have a line equal in length to **DB** (actually, we have two of them, remember the equilateral triangle we built earlier). So [**DE** can now be used as the radius for a circle, callit circle **Y**,  centered at **D**.](#postulate-3). 
+We don't quite have a notion of length, but if we did, notice that we would be able to say that length(**DE**) = length(**DB**) + length(**AB**). Since our aim is to draw a line with length equal to **AB** at point **C**, we could achieve this by somehow cutting off a section equal in length to **DB** from a line equal in length **DE** as long as the line passes through **C** appropriately. The good news is that we have a line equal in length to **DB** (actually, we have two of them, remember the equilateral triangle we built earlier). So <span id="prop2_6" class="proofstep e_post3">**DE** can now be used as the radius for a circle, call it circle **Y**,  centered at **D**.</span>
 
-Furthermore, [we can extend **DC** past circle **Y**](#postulate-2) and [find the intersection of this extended line and **Y**](#note-2) (like we did with the circle **X**). Calling this intersection point **F**, we know that **DF** is the same length as **DE** (they are radii for the same circle). We also know that they both have a subsegment of equal lengths: **DB** and **DC** are sides of an equilateral triangle, and they are subsegments of **DE** and **DF**, respectively. By throwing these subsements away, the remainders **BE** and **CF** are equal in length. Since **BE** is the same length as **AB** (they are, again, radii for the same circle), we have constructed a line equal in length to **AB** at point **C**. ■
-
-<div id="note-2" style="display: none">I'm not sure if this is technically proved, but it's kind of obvious, since we *built* the line so that it would intersect the circle. If it's not rigorously proved, it's a technicality not worth paying attention to.</div>
+Furthermore, <span id="prop2_7" class="proofstep e_post2">we can extend **DC** past circle **Y**</span> and <span id="prop2_8" class="proofstep e_note2">find the intersection of this extended line and **Y**</span> (like we did with the circle **X**). Calling this intersection point **F**, we know that **DF** is the same length as **DE** (they are radii for the same circle). We also know that they both have a subsegment of equal lengths: **DB** and **DC** are sides of an equilateral triangle, and they are subsegments of **DE** and **DF**, respectively. By throwing these subsements away, the remainders **BE** and **CF** are equal in length. Since **BE** is the same length as **AB** (they are, again, radii for the same circle), we have constructed a line equal in length to **AB** at point **C**. ■
 
 ### Proposition 3
 Given two line segments, **AB** and **CD** of unequal length, we can cut off from the greater a line equal to the lesser.
@@ -78,6 +74,22 @@ Given two line segments, **AB** and **CD** of unequal length, we can cut off fro
 <div id="Rprop3" class="raph_container"></div>
 
 #### Proof
-Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, say **C**, then [we can draw a line **CE** equal in length to **AB** at **C**](#proposition-2).
+Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, say **C**, then <span id="prop3_1" class="proofstep e_prop2">we can draw a line **CE** equal in length to **AB** at **C**.</span>
 
-[Now we can draw the circle at **C** with radius **CD**.](#postulate-3) This circle intersects  **CE** at a point, call it **F**. The segment **CF** is the desired line. ■
+<span id="prop3_2" class="proofstep e_post3">Now we can draw the circle at **C** with radius **CD**.</span> This circle intersects  **CE** at a point, call it **F**. The segment **CF** is the desired line. ■
+
+
+<div id="post-1" style="display: none">**Postulate 1** - A line segment can be constructed between any two points.</div>
+
+<div id="post-2" style="display: none">**Postulate 2** - A line segment can be extended indefinitely.</div>
+
+<div id="post-3" style="display: none">**Postulate 3** - Given a radius, a circle centered at any given point can be constructed.</div>
+
+<div id="prop-1" style="display: none">**Proposition 1** - Given a line segment, we can construct an equilateral triangle with the segment as one of the sides.</div>
+
+<div id="prop-2" style="display: none">**Proposition 2** - Given a line segment, we can construct an equal line at an arbitrary given point.</div>
+
+<div id="note-1" style="display: none">Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.</div>
+
+<div id="note-2" style="display: none">I'm not sure if this is technically proved, but it's kind of obvious, since we *built* the line so that it would intersect the circle. If it's not rigorously proved, it's a technicality not worth paying attention to.</div>
+
