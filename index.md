@@ -57,7 +57,7 @@ Given a straight line segment **AB**, we can construct an equilateral triangle w
 
 
 ### Proposition 2
-Given a line segment and a point, we can construct a line segment of equal length to the original segment at the point.
+Given a line segment **AB** and a point **C**, we can construct a line segment of equal length to the original segment at the point.
 
 <div id="Rprop2" class="raph_container"></div>
 
@@ -68,7 +68,7 @@ Arbitrarily select one of the endpoints, say, **B**. [We can draw a line segment
 
 We don't quite have a notion of length, but if we did, notice that we would be able to say that length(**DE**) = length(**DB**) + length(**AB**). Since our aim is to draw a line with length equal to **AB** at point **C**, we could achieve this by somehow cutting off a section equal in length to **DB** from a line equal in length **DE** as long as the line passes through **C** appropriately. The good news is that we have a line equal in length to **DB** (actually, we have two of them, remember the equilateral triangle we built earlier). So [**DE** can now be used as the radius for a circle, callit circle **Y**,  centered at **D**.](#postulate-3). 
 
-Furthermore, [we can extend **DC** past circle **Y**](#postulate-2) and [find the intersection of this extended line and **Y**](#note-2) (like we did with the circle **X**). Calling this intersection point **F**, we know that **DF** is the same length as **DE** (they are radii for the same circle). We also know that they both have a subsegment of equal lengths: **DB** and **DC** are sides of an equilateral triangle, and they are subsegments of **DE** and **DF**, respectively. By throwing these subsements away, the remainders **BE** and **CF** are equal in length. Since **BE** is the same length as **AB** (they are, again, radii for the same circle), we have constructed a line equal in length to **AB** at point **C**.
+Furthermore, [we can extend **DC** past circle **Y**](#postulate-2) and [find the intersection of this extended line and **Y**](#note-2) (like we did with the circle **X**). Calling this intersection point **F**, we know that **DF** is the same length as **DE** (they are radii for the same circle). We also know that they both have a subsegment of equal lengths: **DB** and **DC** are sides of an equilateral triangle, and they are subsegments of **DE** and **DF**, respectively. By throwing these subsements away, the remainders **BE** and **CF** are equal in length. Since **BE** is the same length as **AB** (they are, again, radii for the same circle), we have constructed a line equal in length to **AB** at point **C**. ■
 
-<div id="note-2" style="display: none">How do we know that the line actually does intersect the circle? This isn't proved, but we handwave it away because Euclid does too!</div>
+<div id="note-2" style="display: none">I'm not sure if this is technically proved, but it's kind of obvious, since we *built* the line so that it would intersect the circle. If it's not rigorously proved, it's a technicality not worth paying attention to.</div>
 
