@@ -72,3 +72,12 @@ Furthermore, [we can extend **DC** past circle **Y**](#postulate-2) and [find th
 
 <div id="note-2" style="display: none">I'm not sure if this is technically proved, but it's kind of obvious, since we *built* the line so that it would intersect the circle. If it's not rigorously proved, it's a technicality not worth paying attention to.</div>
 
+### Proposition 3
+Given two line segments, **AB** and **CD** of unequal length, we can cut off from the greater a line equal to the lesser.
+
+<div id="Rprop3" class="raph_container"></div>
+
+#### Proof
+Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, say **C**, then [we can draw a line **CE** equal in length to **AB** at **C**](#proposition-2).
+
+[Now we can draw the circle at **C** with radius **CD**.](#postulate-3) This circle intersects  **CE** at a point, call it **F**. The segment **CF** is the desired line. ■

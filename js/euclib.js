@@ -236,7 +236,7 @@ define( ["raphael"], function( Raphael ) {
 
     // finds intersection of circle and segment for a segment passing
     // through the center of the circle
-    pub.findCircCenterSegIntersection = function( r, circ, seg ) {
+    pub.findCircCenterSegInter = function( r, circ, seg ) {
         // find change per length of the segment, then
         // multiply by the radius of the circle to find the change
         // from circle to intersection
@@ -303,21 +303,21 @@ define( ["raphael"], function( Raphael ) {
 
     // Prop2 - takes a segment and a point, returns a segment located at the point
     // that's equal in length to the segment
-    pub.Prop2 = function( seg, pt ) {
-        var seg1 = new pub.Segment(seg.B, pt);
+    pub.Prop2 = function( r, seg, pt ) {
+        var seg1 = new pub.Segment ( r, seg.B, pt );
 
-        var eqtri = pub.Prop1(seg1);
+        var eqtri = pub.Prop1 ( r, seg1 );
 
         // now make the circle based on the original given seg
-        var seg_circ = pub.circFromSeg(seg, "B");
+        var seg_circ = pub.circFromSeg ( r, seg, "B" );
 
 
         //extend the other side of the equilateral triangle
-        var ext_seg = pub.extendSegment(eqtri.sideA, "B", seg.length + 30, 1);
+        var ext_seg = pub.extendSegment ( r, eqtri.sideA, "B", seg.length + 30, 1 );
 
 
         //find intersection of circle and extended line
-        var interpt = pub.findCircCenterSegIntersection(seg_circ, ext_seg);
+        var interpt = pub.findCircCenterSegInter ( r, seg_circ, ext_seg );
 
         // the other point in the eq tri (not B or C)
         var eqtri_otherpt = eqtri.sideA.A;
@@ -325,17 +325,17 @@ define( ["raphael"], function( Raphael ) {
 
         // line from other point of the eqtri to the intersection of the
         // extension and the circle
-        var ext_inter_seg = new pub.Segment(eqtri_otherpt, interpt);
+        var ext_inter_seg = new pub.Segment ( r, eqtri_otherpt, interpt );
 
-        var ext_inter_seg_circ = pub.circFromSeg(ext_inter_seg, "A");
+        var ext_inter_seg_circ = pub.circFromSeg ( r, ext_inter_seg, "A" );
 
         // extend the remaining side of the eq tri
-        var last_ext_seg = pub.extendSegment(eqtri.sideB, "B", seg.length + 30, 1) ;
+        var last_ext_seg = pub.extendSegment ( r, eqtri.sideB, "B", seg.length + 30, 1 );
 
         // find intersection of the newest circle and the last_ext_seg
-        var inter2pt = pub.findCircCenterSegIntersection(ext_inter_seg_circ, last_ext_seg);
+        var inter2pt = pub.findCircCenterSegInter ( r, ext_inter_seg_circ, last_ext_seg );
 
-        return new pub.Segment(pt, inter2pt);
+        return new pub.Segment ( r, pt, inter2pt );
 
     };
 

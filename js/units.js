@@ -120,7 +120,7 @@ define(["euclib"], function( euclib ) {
             seg_circ = euclib.circFromSeg ( r, seg, "B" ),
             ext_seg = euclib.extendSegment ( r, eqtri.sideA, "B", seg.length + 30, 1 ),
             //find intersection of circle and extended line
-            interpt = euclib.findCircCenterSegIntersection ( r, seg_circ, ext_seg ),
+            interpt = euclib.findCircCenterSegInter ( r, seg_circ, ext_seg ),
             // the other point in the eq tri (not B or C)
             eqtri_otherpt = eqtri.sideA.A,
 
@@ -133,7 +133,7 @@ define(["euclib"], function( euclib ) {
             // extend the remaining side of the eq tri
             last_ext_seg = euclib.extendSegment ( r, eqtri.sideB, "B", seg.length + 30, 1 ),
             // find intersection of the newest circle and the last_ext_seg
-            inter2pt = euclib.findCircCenterSegIntersection ( r, ext_inter_seg_circ, last_ext_seg );
+            inter2pt = euclib.findCircCenterSegInter ( r, ext_inter_seg_circ, last_ext_seg );
 
         return [
             createUnitObj(seg, 0),
@@ -151,29 +151,27 @@ define(["euclib"], function( euclib ) {
 
 
 
-    pub.b1.prop3 = new Unit(
-        function() {
-            var A = new euclib.Point(150, 180.5),
-                B = new euclib.Point(230, 255.5),
-                C = new euclib.Point(260, 170.5),
-                D = new euclib.Point(230, 115.5),
-                seg1 = new euclib.Segment(A, B),
-                seg2 = new euclib.Segment(C, D),
-                //start of construction
-                newseg = euclib.Prop2(seg1, C),
-                seg2_circ = euclib.circFromSeg(seg2),
-                seg1_circ_inter = euclib.findCircCenterSegIntersection(seg2_circ, newseg);
+    pub.b1.prop3 = new Unit(function( r ) {
+        var A = new euclib.Point ( r, 150, 180.5 ),
+            B = new euclib.Point ( r, 230, 255.5 ),
+            C = new euclib.Point ( r, 260, 170.5 ),
+            D = new euclib.Point ( r, 230, 115.5 ),
+            seg1 = new euclib.Segment ( r, A, B ),
+            seg2 = new euclib.Segment ( r, C, D ),
+            //start of construction
+            newseg = euclib.Prop2 ( r, seg1, C ),
+            seg2_circ = euclib.circFromSeg ( r, seg2),
+            seg1_circ_inter = euclib.findCircCenterSegInter( r, seg2_circ, newseg );
 
-            return [
-                createUnitObj(seg1, 0),
-                createUnitObj(seg2, 0, blue),
-                createUnitObj(C, 0),
-                createUnitObj(newseg, 1, yellow),
-                createUnitObj(seg2_circ, 2, blue),
-                createUnitObj(seg1_circ_inter, 3),
-            ];
-        }
-    ); // b1prop3
+        return [
+            createUnitObj(seg1, 0),
+            createUnitObj(seg2, 0, blue),
+            createUnitObj(C, 0),
+            createUnitObj(newseg, 1, yellow),
+            createUnitObj(seg2_circ, 2, blue),
+            createUnitObj(seg1_circ_inter, 3),
+        ];
+    }); // b1prop3
 
 
     // Pythagorean Theorem Logo
