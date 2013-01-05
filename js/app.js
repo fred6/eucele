@@ -33,6 +33,13 @@ define( ["jquery", "raphael", "units", "justifications"], function( $, Raphael, 
             units.b1[unit].init(raph);
         });
 
+        // step via links
+        $("p").on("click", "span.proofstep", function(e) {
+            var addr = $(this).attr('id').split('_');
+            units.b1[addr[0]].goTo ( Number ( addr[1] ) );
+
+        });
+
 
         justifications.setup();
 
