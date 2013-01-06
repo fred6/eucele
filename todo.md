@@ -1,1 +1,2 @@
  - move show() and hide() from Point/Segment/Circle classes to the Drawing() class. I'm thinking the figure classes should be purely logic, while Drawing() class should handle the display. then again, that makes Drawing() even larger.
+ - add JS minification to build process
