@@ -10,6 +10,8 @@ A word to math aficionados: I'm clearly not aiming for absolute rigor here (c.f.
 
 Some wise words go here. 2000 year old book. blah blah.
 
+Steps in the proof that are underlined can be clicked on to show the justification or notes for that step.
+
 I use "■" to indicate that a proof is over. This is called a [halmos or tombstone](http://en.wikipedia.org/wiki/Tombstone_(typography)). This is used in place of [QED](http://en.wikipedia.org/wiki/Q.E.D.)
 
 # Book 1
