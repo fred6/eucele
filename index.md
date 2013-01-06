@@ -79,6 +79,15 @@ Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, sa
 <span id="prop3_2" class="proofstep e_post3">Now we can draw the circle at **C** with radius **CD**.</span> <span id="prop3_3" class="proofstep e_note2">This circle intersects  **CE** at a point, call it **F**.</span> The segment **CF** is the desired line. ■
 
 
+### Proposition 4
+Given two triangles, **ABC** and **DEF**, with **AB** the same length as **DE**, **BC** the same length as **EF**, and angle **∠ABC** equal to **∠DEF**, then the triangles are congruent.
+
+<div id="Rprop4" class="raph_container"></div>
+
+#### Proof
+<span id="prop4_1" class="proofstep e_note3">Place triangle **ABC** on **DEF** so that **B* coincides with **E** and **AB** coincides with **DE**.</span>
+
+
 <div id="post-1" style="display: none">**Postulate 1** - A line segment can be constructed between any two points.</div>
 
 <div id="post-2" style="display: none">**Postulate 2** - A line segment can be extended indefinitely.</div>
@@ -89,9 +98,13 @@ Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, sa
 
 <div id="prop-2" style="display: none">**Proposition 2** - Given a line segment, we can construct an equal line at an arbitrary given point.</div>
 
+<div id="note-0" style="display: none">Given.</div>
+
 <div id="note-1" style="display: none">Euclid doesn't really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.</div>
 
 <div id="note-2" style="display: none">I'm not sure if this is technically proved, but it's kind of obvious, since we *built* the line so that it would intersect the circle. If it's not rigorously proved, it's a technicality not worth paying attention to.</div>
+
+<div id="note-3" style="display: none">**Superposition** - Euclid infamously doesn't axiomatize this operation. There is no explanation given for what, exactly, placing one figure on another means, nor is there any justification given for its validity. Hilbert proves proposition 4 essentially by assuming it to be true. The description given by Euclid is very intuitive-sounding, at least.</div>
 
 
 # Resources

@@ -180,6 +180,26 @@ define(["euclib"], function( euclib ) {
         ];
     }); // b1prop3
 
+    pub.b1.prop4 = new Unit(function( d ) {
+        d.newPoint ( 150, 180.5, "A" );
+        d.newPoint ( 210, 105.5, "B" );
+        d.newPoint ( 230, 170.5, "C" );
+        d.newPoint ( 250, 180.5, "D" );
+        d.newPoint ( 310, 105.5, "E" );
+        d.newPoint ( 330, 170.5, "F" );
+        d.newTriangle ( "A", "B", "C" );
+        d.newTriangle ( "D", "E", "F" );
+
+        return [
+            ["AB", 0, blue],
+            ["BC", 0, yellow],
+            ["AC", 0],
+            ["DE", 0, blue],
+            ["EF", 0, yellow],
+            ["DF", 0]
+        ];
+    }); // b1prop3
+
 
     // Pythagorean Theorem Logo
     var pythag_logo = new Unit(

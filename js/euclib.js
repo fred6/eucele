@@ -126,6 +126,37 @@ define( ["raphael"], function( Raphael ) {
     };
 
 
+    pub.Triangle = function ( r, pt1, pt2, pt3 ) {
+        this.r = r;
+
+        // insertion sort!
+        var verts = [pt1, pt2, pt3];
+        var tmp;
+
+        if ( verts[1].x < verts[0].x ) {
+            tmp = verts[0];
+            verts[0] = verts[1];
+            verts[1] = tmp;
+        }
+
+        if ( verts[2].x < verts[1].x ) {
+            tmp = verts[2];
+            verts[2] = verts[1];
+
+            if ( verts[2].x < verts[0].x ) {
+                verts[1] = verts[0];
+                verts[0] = tmp;
+            } else {
+                verts[1] = tmp;
+            }
+        }
+
+        this.vertices = verts;
+
+    };
+
+
+
     // the idea is that instead of having a separate triangle object, im just going
     // to have a proposition function return a group of segments.
     pub.EleGroup = function( eles ) {
@@ -239,6 +270,32 @@ define( ["raphael"], function( Raphael ) {
                                                 this.get ( center ),
                                                 this.get ( rad ).length );
             return this.figures[id];
+        }
+    };
+
+    pub.Drawing.prototype.newTriangle = function ( v1, v2, v3, id ) {
+        if ( id === undefined ) {
+            id = v1 + v2 + v3;
+        }
+
+        if ( this.get ( id ) !== undefined ) {
+            throw "Figure name already in use: " + id;
+        } else {
+            this.figures[id] = new pub.Triangle ( this.r,
+                                                  this.get ( v1 ),
+                                                  this.get ( v2 ),
+                                                  this.get ( v3 ) );
+            try {
+                this.newSegment( v1, v2 );
+            } catch (e) {}
+
+            try {
+                this.newSegment( v1, v3 );
+            } catch (e) {}
+
+            try {
+                this.newSegment( v2, v3 );
+            } catch (e) {}
         }
     };
 
