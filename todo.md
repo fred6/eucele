@@ -1,3 +1,1 @@
- - name points globally. it's very confusing when you reference the points of every segment by "A" and "B" depending on which is left-most. points should have a unique name in a figure
- - use backbone instead of jquery spaghetti code
- - fix book 1 prop 2, step 1 error (it gets masked by EleGroup in step 2. the solution might be to individually assign the visibility step to each element in a Group. this seems really ugly though. I need to rethink the correct way to model this proof)
+ - move show() and hide() from Point/Segment/Circle classes to the Drawing() class. I'm thinking the figure classes should be purely logic, while Drawing() class should handle the display. then again, that makes Drawing() even larger.
