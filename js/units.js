@@ -223,9 +223,6 @@ define(["euclib"], function( euclib ) {
         }
     );
 
-//    for ( unit in b1 ) {
-//       if ( b1.hasOwnProperty ( unit ) ) {
-
     return pub;
 
 });

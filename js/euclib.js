@@ -324,6 +324,27 @@ define( ["raphael"], function( Raphael ) {
         return  this.newPoint ( interX, interY, intpt );
     };
 
+
+    pub.Drawing.prototype.get = function ( id ) {
+        return this.figures[id];
+    };
+
+    pub.Drawing.prototype.destroy = function ( id ) {
+        delete this.figures[id];
+    };
+
+    pub.Drawing.prototype.getRandomId = function () {
+        var rand;
+        do {
+            rand = "anon"+ Math.floor ( Math.random() * 1000 );
+        } while ( this.get ( rand ) !== undefined);
+
+        return rand;
+    };
+
+
+    /*** Proposition logic ***/
+
     // takes a segment and returns the additional segments that make up the 
     // equilateral triangle on the input segment
     pub.Drawing.prototype.Prop1 = function ( seg, otherpt ) {
@@ -351,26 +372,6 @@ define( ["raphael"], function( Raphael ) {
         return this.newSegment ( moveto, otherpt );
     };
 
-
-
-    pub.Drawing.prototype.get = function ( id ) {
-        return this.figures[id];
-    };
-
-    pub.Drawing.prototype.destroy = function ( id ) {
-        delete this.figures[id];
-    };
-
-    pub.Drawing.prototype.getRandomId = function () {
-        var rand;
-        do {
-            rand = "anon"+ Math.floor ( Math.random() * 1000 );
-        } while ( this.get ( rand ) !== undefined);
-
-        return rand;
-    };
-
-    /*** Proposition logic ***/
 
     // return globally
     return pub;
