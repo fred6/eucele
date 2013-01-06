@@ -76,7 +76,7 @@ Given two line segments, **AB** and **CD** of unequal length, we can cut off fro
 #### Proof
 Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, say **C**, then <span id="prop3_1" class="proofstep e_prop2">we can draw a line **CE** equal in length to **AB** at **C**.</span>
 
-<span id="prop3_2" class="proofstep e_post3">Now we can draw the circle at **C** with radius **CD**.</span> This circle intersects  **CE** at a point, call it **F**. The segment **CF** is the desired line. ■
+<span id="prop3_2" class="proofstep e_post3">Now we can draw the circle at **C** with radius **CD**.</span> <span id="prop3_3" class="proofstep e_note2">This circle intersects  **CE** at a point, call it **F**.</span> The segment **CF** is the desired line. ■
 
 
 <div id="post-1" style="display: none">**Postulate 1** - A line segment can be constructed between any two points.</div>
