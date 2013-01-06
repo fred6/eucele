@@ -4,7 +4,7 @@
 //
 // See LICENSE (file) for a copy of the CC0 Public Domain Dedication, or see <http://creativecommons.org/publicdomain/zero/1.0/>. 
 
-define( ["jquery", "raphael", "units", "justifications"], function( $, Raphael, units, justifications ) {
+define( ["jquery", "raphael", "euclib", "units", "justifications"], function( $, Raphael, euclib, units, justifications ) {
     var pub = {};
     pub.start = function () {
         // set up button bindings for stepping thru
@@ -30,7 +30,7 @@ define( ["jquery", "raphael", "units", "justifications"], function( $, Raphael, 
             var raph = Raphael($(raph_div).appendTo($this)[0], 560, thisHeight);
             $(button_div).appendTo($this);
 
-            units.b1[unit].init(raph);
+            units.b1[unit].init ( new euclib.Drawing ( raph ) );
         });
 
         // step via links

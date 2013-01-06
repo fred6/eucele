@@ -52,18 +52,36 @@ define(["euclib"], function( euclib ) {
         this.goTo ( -1 );
     };
 
-    Unit.prototype.init = function( r ) {
-        this.children = this.initfn ( r );
+    Unit.prototype.init = function( d ) {
+        var salient = this.initfn ( d ),
+            temp;
+        this.children = [];
 
-        this.numStates = 0;
-        for ( var i = 0; i < this.children.length; i++ ) {
-            if ( this.children[i].state > this.numStates ) {
-                this.numStates = this.children[i].state;
+        var prepChild = function ( sal ) {
+            var ch = {
+                eucObj: d.get ( sal[0] ),
+                state: sal[1]
+            };
+
+            if ( sal[2] !== undefined ) {
+                ch.stroke = sal[2];
             }
+
+            return ch;
         }
 
-        this.numStates += 1; // children.state is 0-referenced
+        // really wish i had map(), but not sure i want to pull in underscore.js...
+        this.numStates = 0;
+        for ( var i = 0; i < salient.length; i++ ) {
+            temp = prepChild ( salient[i] );
+            if ( temp.state > this.numStates ) {
+                this.numStates = temp.state;
+            }
 
+            this.children.push ( temp );
+        }
+
+        this.numStates += 1;
         this.goTo ( 0 );
     };
 
@@ -88,88 +106,77 @@ define(["euclib"], function( euclib ) {
     };
 
 
-    pub.b1.prop1 = new Unit(function( r ) {
-        var A = new euclib.Point ( r, 260, 180.5 ),
-            B = new euclib.Point ( r, 330, 180.5 ),
-            seg = new euclib.Segment ( r, A, B ),
-            c1 = euclib.circFromSeg ( r, seg, "A" ),
-            c2 = euclib.circFromSeg ( r, seg, "B" ),
-            inter = euclib.findCircsIntersection ( r, c1, c2 ),
-            Lside = new euclib.Segment ( r, A, inter ),
-            Rside = new euclib.Segment ( r, B, inter );
+    pub.b1.prop1 = new Unit(function( d ) {
+        d.newPoint ( 260, 180.5, "A" );
+        d.newPoint ( 330, 180.5, "B" );
+        d.newSegment ( "A", "B" );
+        d.newCircle ( "A", "AB", "X" );
+        d.newCircle ( "B", "AB", "Y" );
+        d.findCircleInter ( "X", "Y", "C" );
+        d.newSegment ( "A", "C" );
+        d.newSegment ( "B", "C" );
 
         return [
-            createUnitObj(seg, 0),
-            createUnitObj(c1, 1, red),
-            createUnitObj(c2, 2, yellow),
-            createUnitObj(inter, 3),
-            createUnitObj(Lside, 4, red),
-            createUnitObj(Rside, 5, yellow)
+            ["AB", 0],
+            ["X", 1, red],
+            ["Y", 2, yellow],
+            ["C", 3],
+            ["AC", 4, red],
+            ["BC", 5, yellow]
         ];
     }); // prop1
     
 
-    pub.b1.prop2 = new Unit(function( r ) {
-        var A = new euclib.Point ( r, 150, 180.5 ),
-            B = new euclib.Point ( r, 220, 220.5 ),
-            C = new euclib.Point ( r, 260, 170.5 ),
-
-            seg = new euclib.Segment ( r, A, B ),
-            segBC = new euclib.Segment ( r, B, C ),
-            eqtri = euclib.Prop1 ( r, segBC ),
-            seg_circ = euclib.circFromSeg ( r, seg, "B" ),
-            ext_seg = euclib.extendSegment ( r, eqtri.sideA, "B", seg.length + 30, 1 ),
-            //find intersection of circle and extended line
-            interpt = euclib.findCircCenterSegInter ( r, seg_circ, ext_seg ),
-            // the other point in the eq tri (not B or C)
-            eqtri_otherpt = eqtri.sideA.A,
-
-            // line from other point of the eqtri to the intersection of the
-            // extension and the circle
-            ext_inter_seg = new euclib.Segment ( r, eqtri_otherpt, interpt ),
-
-            ext_inter_seg_circ = euclib.circFromSeg ( r, ext_inter_seg, "A" ),
-
-            // extend the remaining side of the eq tri
-            last_ext_seg = euclib.extendSegment ( r, eqtri.sideB, "B", seg.length + 30, 1 ),
-            // find intersection of the newest circle and the last_ext_seg
-            inter2pt = euclib.findCircCenterSegInter ( r, ext_inter_seg_circ, last_ext_seg );
+    pub.b1.prop2 = new Unit(function( d ) {
+        d.newPoint ( 150, 180.5, "A" );
+        d.newPoint ( 220, 220.5, "B" );
+        d.newPoint ( 260, 170.5, "C" );
+        d.newSegment ( "A", "B" );
+        d.newSegment ( "B", "C" );
+        d.Prop1 ( "BC", "D" );
+        d.newCircle ( "B", "AB", "X" );
+        d.extendSegment ( "DB", d.get("DB").length + 30, "E" );
+        d.findCircCenterSegInter ( "X", "DE", "F" );
+        d.newSegment ( "D", "F" );
+        d.newCircle ( "D", "DF", "Y" );
+        d.extendSegment ( "DC", d.get ( "DC" ).length + 30, "G" );
+        d.findCircCenterSegInter ( "Y", "DG", "H" );
 
         return [
-            createUnitObj(seg, 0),
-            createUnitObj(C, 0),
-            createUnitObj(segBC, 1, gray),
-            createUnitObj(eqtri, 2, red),
-            createUnitObj(seg_circ, 3, blue),
-            createUnitObj(ext_seg, 4, yellow),
-            createUnitObj(ext_inter_seg_circ, 5, red),
-            createUnitObj(last_ext_seg, 6, red),
-            createUnitObj(inter2pt, 7)
+            ["AB", 0],
+            ["C", 0],
+            ["BC", 1, gray],
+            ["DB", 2, red],
+            ["DC", 2, red],
+            ["X", 3, blue],
+            ["BE", 4, yellow],
+            ["F", 5],
+            ["Y", 6, red],
+            ["CG", 7],
+            ["H", 8]
         ];
-
     }); // prop2
 
 
 
-    pub.b1.prop3 = new Unit(function( r ) {
-        var A = new euclib.Point ( r, 150, 180.5 ),
-            B = new euclib.Point ( r, 230, 255.5 ),
-            C = new euclib.Point ( r, 260, 170.5 ),
-            D = new euclib.Point ( r, 230, 115.5 ),
-            seg1 = new euclib.Segment ( r, A, B ),
-            seg2 = new euclib.Segment ( r, C, D ),
-            //start of construction
-            newseg = euclib.Prop2 ( r, seg1, C ),
-            seg2_circ = euclib.circFromSeg ( r, seg2),
-            seg1_circ_inter = euclib.findCircCenterSegInter( r, seg2_circ, newseg );
+    pub.b1.prop3 = new Unit(function( d ) {
+        d.newPoint ( 150, 180.5, "A" );
+        d.newPoint ( 230, 255.5, "B" );
+        d.newPoint ( 260, 170.5, "C" );
+        d.newPoint ( 230, 115.5, "D" );
+        d.newSegment ( "A", "B" );
+        d.newSegment ( "C", "D" );
+        d.Prop2 ( "AB", "C", "E" );
+        d.newCircle ( "C", "CD", "X" );
+        d.findCircCenterSegInter ( "X", "CE", "F" );
 
         return [
-            createUnitObj(seg1, 0),
-            createUnitObj(seg2, 0, blue),
-            createUnitObj(C, 0),
-            createUnitObj(newseg, 1, yellow),
-            createUnitObj(seg2_circ, 2, blue),
-            createUnitObj(seg1_circ_inter, 3),
+            ["AB", 0],
+            ["CD", 0, blue],
+            ["C", 0],
+            ["CE", 1, yellow],
+            ["X", 2, blue],
+            ["F", 3]
         ];
     }); // b1prop3
 
