@@ -93,3 +93,7 @@ Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, sa
 
 <div id="note-2" style="display: none">I'm not sure if this is technically proved, but it's kind of obvious, since we *built* the line so that it would intersect the circle. If it's not rigorously proved, it's a technicality not worth paying attention to.</div>
 
+
+# Resources
+![Placeholder dog is disappointed](/img/placeholder_dog.jpg)
+Placeholder dog is disappointed that this section isn't complete yet.
