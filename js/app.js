@@ -19,7 +19,7 @@ define( ["jquery", "raphael", "euclib", "units", "justifications"], function( $,
 
         // load Raphaels.
         $(".raph_container").each(function() {
-            var heights = [300, 400],
+            var heights = [300, 400, 300, 250],
                 raph_div = '<div class="raphael"></div>',
                 button_div = '<div style="text-align:center"><button class="left">&lt;</button><button class="right">&gt;</button></div>',
 

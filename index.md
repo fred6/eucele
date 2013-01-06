@@ -80,12 +80,18 @@ Suppose **AB** longer. If we pick one of the endpoints of **CD** arbitrarily, sa
 
 
 ### Proposition 4
-Given two triangles, **ABC** and **DEF**, with **AB** the same length as **DE**, **BC** the same length as **EF**, and angle **∠ABC** equal to **∠DEF**, then the triangles are congruent.
+Given two triangles, **ABC** and **DEF**, with **AB** the same length as **DE**, **BC** the same length as **EF**, and angle **∠ABC** equal to **∠DEF**, then the  remaining sides **AC** and **DF** are equal and the triangles are congruent.
 
 <div id="Rprop4" class="raph_container"></div>
 
 #### Proof
-<span id="prop4_1" class="proofstep e_note3">Place triangle **ABC** on **DEF** so that **B* coincides with **E** and **AB** coincides with **DE**.</span>
+<span id="prop4_1" class="proofstep e_note3">Place triangle **ABC** on **DEF** so that **B** coincides with **E** and **AB** coincides with **DE**.</span> Then **A** coincides with **D** because <span id="prop4_2" class="proofstep e_note0">**AB** and **DE** are equal in length.</span>
+
+We also know that **BC** coincides with **EF** because <span id="prop4_3" class="proofstep e_note0">angle **∠ABC** equals **∠DEF** and **AB** coincides with **DE**.</span>
+
+Finally, we also know that point **C** coincides with point **F** because <span id="prop4_3" class="proofstep e_note0">**BC** and **EF** are equally long.</span>
+
+We've so far proven that the endpoints of the remaining sides coincide. Must the line segments between these endpoints be equal in length? <span id="prop4_4" class="proofstep e_note4">The notion that there could be two different straight line segments (of different length) between two fixed points is ridiculous, so we must conclude that they are the same length.</span> ■
 
 
 <div id="post-1" style="display: none">**Postulate 1** - A line segment can be constructed between any two points.</div>
@@ -106,6 +112,7 @@ Given two triangles, **ABC** and **DEF**, with **AB** the same length as **DE**,
 
 <div id="note-3" style="display: none">**Superposition** - Euclid infamously doesn't axiomatize this operation. There is no explanation given for what, exactly, placing one figure on another means, nor is there any justification given for its validity. Hilbert proves proposition 4 essentially by assuming it to be true. The description given by Euclid is very intuitive-sounding, at least.</div>
 
+<div id="note-4" style="display: none">Unfortunately, something seeming "ridiculous" is not a sufficient criterion for taking it to be true. Our axioms could simply be deficient. This is another hole that we need to patch in the presentation, which we could do with an axiom like this: *Exactly one line segment can be drawn between any two points*</div>
 
 # Resources
 ![Placeholder dog is disappointed](/img/placeholder_dog.jpg)
