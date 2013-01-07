@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Euclidean Elements - </title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+    q { quotes: "“" "”" "‘" "’"; }
+  </style>
+      <meta name="viewport" content="width=device-width">
+      <link rel="stylesheet" href="css/style.css">
+      <script data-main="js/main" src="js/require.js"></script>
+</head>
+<body>
+<div id="container">
+    <div id="cover" style="text-align: center">
+        <hgroup>
+            <h1>Euclidean Elements (alpha)</h1>
+            <h2>A hypertext adaptation of Euclid's Elements</h2>
+        </hgroup>
+        <img src="img/PythagThm.png" alt="Euclid's construction of the Pythagorean Theorem" style="margin-left: auto; margin-right: auto"/>
+    </div>
+<nav id="TOC">
+<ul>
+<li><a href="#preface">Preface</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#book-1">Book 1</a><ul>
+<li><a href="#definitions">Definitions</a><ul>
+<li><a href="#point">Point</a></li>
+<li><a href="#lines">Lines</a></li>
+</ul></li>
+<li><a href="#postulates">Postulates</a><ul>
+<li><a href="#postulate-1">Postulate 1</a></li>
+<li><a href="#postulate-2">Postulate 2</a></li>
+<li><a href="#postulate-3">Postulate 3</a></li>
+<li><a href="#postulate-4">Postulate 4</a></li>
+<li><a href="#postulate-5">Postulate 5</a></li>
+<li><a href="#postulate-discussion">Postulate discussion</a></li>
+</ul></li>
+<li><a href="#common-notions">Common Notions</a></li>
+<li><a href="#propositions">Propositions</a><ul>
+<li><a href="#proposition-1">Proposition 1</a><ul>
+<li><a href="#proof">Proof</a></li>
+</ul></li>
+<li><a href="#proposition-2">Proposition 2</a><ul>
+<li><a href="#proof-1">Proof</a></li>
+</ul></li>
+<li><a href="#proposition-3">Proposition 3</a><ul>
+<li><a href="#proof-2">Proof</a></li>
+</ul></li>
+<li><a href="#proposition-4">Proposition 4</a><ul>
+<li><a href="#proof-3">Proof</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+</nav>
+<h1 id="preface"><a href="#TOC">Preface</a></h1>
+<p>This page/site/book/hypertext learning document, both words and code, is licensed under <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC-0</a>. You can find all files on <a href="https://github.com/fred6/eucele">github</a>, discuss issues, submit pull requests, fork it, whatev.</p>
+<p>The colors are heavily inspired by <a href="http://www.math.ubc.ca/~cass/Euclid/byrne.html">Oliver Byrne’s version of the Elements</a> (the colors themselves are a direct ripoff, but I’ve used them in different ways). I’ve also made use of <a href="http://farside.ph.utexas.edu/euclid.html">Richard Fitzpatrick’s translation of the Elements</a>, as well as <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/bookI.html">D.E. Joyce’s site on the Elements</a>, which is, of course, the original web adaptation of Euclid. <a href="http://www.proofwiki.org/wiki/ProofWiki:Books/Euclid/The_Elements">Proof Wiki’s presentation</a> has been useful as well.</p>
+<p>A word to math aficionados: I’m clearly not aiming for absolute rigor here (c.f. my section of definitions for lines, where I describe lines as <q>curvy</q> without defining what that means). There are deeper problems with Euclid’s postulates, and anyway others far more competent than I have cleaned all this up (see <a href="http://en.wikipedia.org/wiki/Hilbert&#39;s_axioms">Hilbert’s <em>Foundations of Geometry</em></a>).</p>
+<h1 id="introduction"><a href="#TOC">Introduction</a></h1>
+<p>Some wise words go here. 2000 year old book. blah blah.</p>
+<p>Steps in the proof that are underlined can be clicked on to show the justification or notes for that step.</p>
+<p>I use <q>■</q> to indicate that a proof is over. This is called a <a href="http://en.wikipedia.org/wiki/Tombstone_(typography)">halmos or tombstone</a>. This is used in place of <a href="http://en.wikipedia.org/wiki/Q.E.D.">QED</a></p>
+<h1 id="book-1"><a href="#TOC">Book 1</a></h1>
+<h2 id="definitions"><a href="#TOC">Definitions</a></h2>
+<h3 id="point"><a href="#TOC">Point</a></h3>
+<p>A <strong>point</strong> is an entity with position but not magnitude.</p>
+<h3 id="lines"><a href="#TOC">Lines</a></h3>
+<p>A <strong>line</strong> is a length without width or height. Some lines are curvy (like, as we shall see, the perimeter of a circle), but lines that are not curvy are <strong>straight lines</strong>.</p>
+<p>The endpoints of a line are points.</p>
+<h2 id="postulates"><a href="#TOC">Postulates</a></h2>
+<h3 id="postulate-1"><a href="#TOC">Postulate 1</a></h3>
+<p>A line segment can be drawn between any two points.</p>
+<h3 id="postulate-2"><a href="#TOC">Postulate 2</a></h3>
+<p>Any line segment can be extended arbitrarily.</p>
+<h3 id="postulate-3"><a href="#TOC">Postulate 3</a></h3>
+<p>Given a point A and another point B, a circle can be drawn with center at point A and with radius equal to the segment between A and B.</p>
+<h3 id="postulate-4"><a href="#TOC">Postulate 4</a></h3>
+<p>All right angles are equal to one another.</p>
+<h3 id="postulate-5"><a href="#TOC">Postulate 5</a></h3>
+<h3 id="postulate-discussion"><a href="#TOC">Postulate discussion</a></h3>
+<p>Significance of the axiomatic method in general (I’m not qualified for this probably). We have 3 construction axioms, which really means that, in this book, we have a compass and a straight edge. (But notice, due to prop. 2, that we can’t reliably preserve distance via the compass when we pick it up from the paper. Otherwise we would immediately have the ability to draw a line of length equal to <strong>Line 1</strong> at an arbitrary point <strong>C</strong>.</p>
+<p>Should cover the infamous postulate 5 as well. Everything up to postulate 29 can be considered <q>neutral geometry</q>, because none of it utilizes postulate 5. In fact, we could almost split Euclid’s Book 1 into two books: 1-28 is Neutral plane geometry, and 29+ is euclidean plane geometry.</p>
+<h2 id="common-notions"><a href="#TOC">Common Notions</a></h2>
+<h2 id="propositions"><a href="#TOC">Propositions</a></h2>
+<h3 id="proposition-1"><a href="#TOC">Proposition 1</a></h3>
+<p>Given a straight line segment <strong>AB</strong>, we can construct an equilateral triangle with that segment as one of the sides.</p>
+<div id="Rprop1" class="raph_container"></div>
+
+<h4 id="proof"><a href="#TOC">Proof</a></h4>
+<p><span id="prop1_1" class="proofstep e_post3">We can draw a circle with center at <strong>A</strong> and a radius of <strong>AB</strong>.</span> <span id="prop1_2" class="proofstep e_post3">We can also draw a circle with center at <strong>B</strong> and the same radius.</span> <span id="prop1_3" class="proofstep e_note1">The two circles intersect at a point, call it <strong>C</strong>.</span></p>
+<p><span id="prop1_4" class="proofstep e_post1">Now we can draw a straight line segment between <strong>A</strong> and <strong>C</strong>,</span> and <span id="prop1_5" class="proofstep e_post1">another between <strong>B</strong> and <strong>C</strong>.</span> ■</p>
+<h3 id="proposition-2"><a href="#TOC">Proposition 2</a></h3>
+<p>Given a line segment <strong>AB</strong> and a point <strong>C</strong>, we can construct a line segment of equal length to the original segment at the point.</p>
+<div id="Rprop2" class="raph_container"></div>
+
+<h4 id="proof-1"><a href="#TOC">Proof</a></h4>
+<p>Arbitrarily select one of the endpoints, say, <strong>B</strong>. <span id="prop2_1" class="proofstep e_post1">We can draw a line segment between <strong>B</strong> and <strong>C</strong></span> and then <span id="prop2_2" class="proofstep e_prop1">use that segment as a base for an equilateral triangle.</span> Let’s call the other point in the triangle (the one not <strong>B</strong> or <strong>C</strong>) <strong>D</strong>.</p>
+<p><span id="prop2_3" class="proofstep e_post3">First we’ll draw a circle, call it <strong>X</strong>, centered at <strong>B</strong> with radius of <strong>AB</strong>.</span> <span id="prop2_4" class="proofstep e_post2">Now extend <strong>DB</strong> to some arbitrary point past circle <strong>X</strong>.</span> <span id="prop2_5" class="proofstep e_note2">We can find the intersection of this line and <strong>X</strong>, call it point <strong>E</strong>.</span></p>
+<p>We don’t quite have a notion of length, but if we did, notice that we would be able to say that length(<strong>DE</strong>) = length(<strong>DB</strong>) + length(<strong>AB</strong>). Since our aim is to draw a line with length equal to <strong>AB</strong> at point <strong>C</strong>, we could achieve this by somehow cutting off a section equal in length to <strong>DB</strong> from a line equal in length <strong>DE</strong> as long as the line passes through <strong>C</strong> appropriately. The good news is that we have a line equal in length to <strong>DB</strong> (actually, we have two of them, remember the equilateral triangle we built earlier). So <span id="prop2_6" class="proofstep e_post3"><strong>DE</strong> can now be used as the radius for a circle, call it circle <strong>Y</strong>, centered at <strong>D</strong>.</span></p>
+<p>Furthermore, <span id="prop2_7" class="proofstep e_post2">we can extend <strong>DC</strong> past circle <strong>Y</strong></span> and <span id="prop2_8" class="proofstep e_note2">find the intersection of this extended line and <strong>Y</strong></span> (like we did with the circle <strong>X</strong>). Calling this intersection point <strong>F</strong>, we know that <strong>DF</strong> is the same length as <strong>DE</strong> (they are radii for the same circle). We also know that they both have a subsegment of equal lengths: <strong>DB</strong> and <strong>DC</strong> are sides of an equilateral triangle, and they are subsegments of <strong>DE</strong> and <strong>DF</strong>, respectively. By throwing these subsements away, the remainders <strong>BE</strong> and <strong>CF</strong> are equal in length. Since <strong>BE</strong> is the same length as <strong>AB</strong> (they are, again, radii for the same circle), we have constructed a line equal in length to <strong>AB</strong> at point <strong>C</strong>. ■</p>
+<h3 id="proposition-3"><a href="#TOC">Proposition 3</a></h3>
+<p>Given two line segments, <strong>AB</strong> and <strong>CD</strong> of unequal length, we can cut off from the greater a line equal to the lesser.</p>
+<div id="Rprop3" class="raph_container"></div>
+
+<h4 id="proof-2"><a href="#TOC">Proof</a></h4>
+<p>Suppose <strong>AB</strong> longer. If we pick one of the endpoints of <strong>CD</strong> arbitrarily, say <strong>C</strong>, then <span id="prop3_1" class="proofstep e_prop2">we can draw a line <strong>CE</strong> equal in length to <strong>AB</strong> at <strong>C</strong>.</span></p>
+<p><span id="prop3_2" class="proofstep e_post3">Now we can draw the circle at <strong>C</strong> with radius <strong>CD</strong>.</span> <span id="prop3_3" class="proofstep e_note2">This circle intersects <strong>CE</strong> at a point, call it <strong>F</strong>.</span> The segment <strong>CF</strong> is the desired line. ■</p>
+<h3 id="proposition-4"><a href="#TOC">Proposition 4</a></h3>
+<p>Given two triangles, <strong>ABC</strong> and <strong>DEF</strong>, with <strong>AB</strong> the same length as <strong>DE</strong>, <strong>BC</strong> the same length as <strong>EF</strong>, and angle <strong>∠ABC</strong> equal to <strong>∠DEF</strong>, then the remaining sides <strong>AC</strong> and <strong>DF</strong> are equal and the triangles are congruent.</p>
+<div id="Rprop4" class="raph_container"></div>
+
+<h4 id="proof-3"><a href="#TOC">Proof</a></h4>
+<p><span id="prop4_1" class="proofstep e_note3">Place triangle <strong>ABC</strong> on <strong>DEF</strong> so that <strong>B</strong> coincides with <strong>E</strong> and <strong>AB</strong> coincides with <strong>DE</strong>.</span> Then <strong>A</strong> coincides with <strong>D</strong> because <span id="prop4_2" class="proofstep e_note0"><strong>AB</strong> and <strong>DE</strong> are equal in length.</span></p>
+<p>We also know that <strong>BC</strong> coincides with <strong>EF</strong> because <span id="prop4_3" class="proofstep e_note0">angle <strong>∠ABC</strong> equals <strong>∠DEF</strong> and <strong>AB</strong> coincides with <strong>DE</strong>.</span></p>
+<p>Finally, we also know that point <strong>C</strong> coincides with point <strong>F</strong> because <span id="prop4_3" class="proofstep e_note0"><strong>BC</strong> and <strong>EF</strong> are equally long.</span></p>
+<p>We’ve so far proven that the endpoints of the remaining sides coincide. Must the line segments between these endpoints be equal in length? <span id="prop4_4" class="proofstep e_note4">The notion that there could be two different straight line segments (of different length) between two fixed points is ridiculous, so we must conclude that they are the same length.</span> ■</p>
+<div id="post-1" style="display: none">
+<strong>Postulate 1</strong> - A line segment can be constructed between any two points.
+</div>
+
+<div id="post-2" style="display: none">
+<strong>Postulate 2</strong> - A line segment can be extended indefinitely.
+</div>
+
+<div id="post-3" style="display: none">
+<strong>Postulate 3</strong> - Given a radius, a circle centered at any given point can be constructed.
+</div>
+
+<div id="prop-1" style="display: none">
+<strong>Proposition 1</strong> - Given a line segment, we can construct an equilateral triangle with the segment as one of the sides.
+</div>
+
+<div id="prop-2" style="display: none">
+<strong>Proposition 2</strong> - Given a line segment, we can construct an equal line at an arbitrary given point.
+</div>
+
+<div id="note-0" style="display: none">
+Given.
+</div>
+
+<div id="note-1" style="display: none">
+Euclid doesn’t really prove that the two circles must intersect, he basically assumes it. You need an additional postulate to cover this.
+</div>
+
+<div id="note-2" style="display: none">
+I’m not sure if this is technically proved, but it’s kind of obvious, since we <em>built</em> the line so that it would intersect the circle. If it’s not rigorously proved, it’s a technicality not worth paying attention to.
+</div>
+
+<div id="note-3" style="display: none">
+<strong>Superposition</strong> - Euclid infamously doesn’t axiomatize this operation. There is no explanation given for what, exactly, placing one figure on another means, nor is there any justification given for its validity. Hilbert proves proposition 4 essentially by assuming it to be true. The description given by Euclid is very intuitive-sounding, at least.
+</div>
+
+<div id="note-4" style="display: none">
+Unfortunately, something seeming <q>ridiculous</q> is not a sufficient criterion for taking it to be true. Our axioms could simply be deficient. This is another hole that we need to patch in the presentation, which we could do with an axiom like this: <em>Exactly one line segment can be drawn between any two points</em>
+</div>
+
+<h1 id="resources"><a href="#TOC">Resources</a></h1>
+<p><img src="/img/placeholder_dog.jpg" alt="Placeholder dog is disappointed"> Placeholder dog is disappointed that this section isn’t complete yet.</p>
+    <footer>
+    <a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/">
+      <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+    </a>
+    <p xmlns:dct="http://purl.org/dc/terms/">
+      To the extent possible under law, the person who associated CC0 with this work has waived all copyright and related or neighboring rights to this work.
+    </p>
+    </footer>
+</div>
+</body>
+</html>
