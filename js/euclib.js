@@ -156,33 +156,6 @@ define( ["raphael"], function( Raphael ) {
     };
 
 
-
-    // the idea is that instead of having a separate triangle object, im just going
-    // to have a proposition function return a group of segments.
-    pub.EleGroup = function( eles ) {
-        for ( var ele in eles ) {
-            this[ele] = eles[ele];
-        }
-    };
-
-
-    pub.EleGroup.prototype.show = function( stroke ) {
-        for ( var ele in this ) {
-            if ( this.hasOwnProperty(ele) ) {
-                this[ele].show( stroke );
-            }
-        }
-    };
-
-    pub.EleGroup.prototype.hide = function() {
-        for ( var ele in this ) {
-            if ( this.hasOwnProperty(ele) ) {
-                this[ele].hide();
-            }
-        }
-    };
-
-
     /*** Utility funcitons ***/
 
     // specialized for drawing the pythagorean theorem logo
