@@ -117,5 +117,5 @@ We've so far proven that the endpoints of the remaining sides coincide. Must the
 <div id="note-4" style="display: none">Unfortunately, something seeming "ridiculous" is not a sufficient criterion for taking it to be true. Our axioms could simply be deficient. This is another hole that we need to patch in the presentation, which we could do with an axiom like this: *Exactly one line segment can be drawn between any two points*</div>
 
 # Resources
-![Placeholder dog is disappointed](/img/placeholder_dog.jpg)
+![Placeholder dog is disappointed](img/placeholder_dog.jpg)
 Placeholder dog is disappointed that this section isn't complete yet.
