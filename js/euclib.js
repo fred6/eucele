@@ -83,6 +83,34 @@ define( ["raphael"], function( Raphael ) {
     };
 
 
+    pub.Angle = function( seg1, seg2, vertex ) {
+        var i, pt1, pt2, pt3;
+
+        for (i = 0; i < 2; i++ ) {
+            if ( seg1.endpoints[i] !== vertex ) {
+                pt1 = seg1.endpoints[i];
+            }
+
+            if ( seg2.endpoints[i] !== vertex ) {
+                pt3 = seg2.endpoints[i];
+            }
+        }
+
+
+        // ugly, but some other logic depends on left-most being the first point
+        if ( pt1.x <= pt3.x ) {
+            this.L = pt1;
+            this.R = pt2;
+        } else {
+            this.L = pt2;
+            this.R = pt1;
+        }
+
+        this.segs = [seg1, seg2];
+        this.pts = [this.L, pt2, this.R];
+    };
+
+
     /*** Utility funcitons ***/
 
     // specialized for drawing the pythagorean theorem logo
@@ -119,13 +147,11 @@ define( ["raphael"], function( Raphael ) {
         this.figures = {};
 
         if ( p !== undefined ) {
-            if ( p instanceof pub.EleGroup ) {
-                for ( var prop in p ) {
-                    if ( p.hasOwnProperty ( prop ) ) {
-                        this.figures[prop] = p[prop];
-                    }
-                    
+            for ( var prop in p ) {
+                if ( p.hasOwnProperty ( prop ) ) {
+                    this.figures[prop] = p[prop];
                 }
+                
             }
         }
 
@@ -194,6 +220,24 @@ define( ["raphael"], function( Raphael ) {
             } catch (e) {}
         }
     };
+
+
+    pub.Drawing.prototype.newAngle = function ( v1, v2, v3, id ) {
+        if ( id === undefined ) {
+            id = "<" + v1 + v2 + v3;
+        }
+
+        if ( this.get ( id ) !== undefined ) {
+            throw "Figure name already in use: " + id;
+        } else {
+            this.figures[id] = new pub.Angle ( this.get ( v1+v2 ),
+                                               this.get ( v2+v3 ),
+                                               this.get ( v2 ) );
+        }
+
+
+    };
+
 
     // the third param is the identifier to be used for the intersection point
     pub.Drawing.prototype.findCircleInter = function ( c1, c2, id ) {
@@ -309,7 +353,33 @@ define( ["raphael"], function( Raphael ) {
 
                 fig.display = this.r.circle(fig.cx, fig.cy, fig.rad).attr(attr);
 
+            } else if ( fig instanceof pub.Angle ) {
+
+                var seg1_id = id.slice ( 1, 3).split("").reverse().join("");
+                var seg2_id = id.slice ( 2 );
+
+                var seg1 = this.get ( seg1_id );
+                var seg2 = this.get ( seg2_id );
+
+                var cpl0 = seg1.getChangePerLength(seg1_id),
+                    cpl1 = seg2.getChangePerLength(seg2_id);
+
+                var rad = 13;
+                var vert = this.get ( id.charAt(2) );
+                var startx = vert.x + cpl0[0] * rad,
+                    starty = vert.y + cpl0[1] * rad,
+                    endx = vert.x + cpl1[0] * rad,
+                    endy = vert.y + cpl1[1] * rad;
+                var path = "M"+startx+","+starty;
+                path += "A"+rad+","+rad + " 0 0,0 ";
+                path += endx+","+endy ;
+                var attr = {
+                        "stroke-width": 3,
+                        "stroke": stroke || "#000"
+                    };
+                fig.display = this.r.path(path).attr(attr);
             }
+
         } else {
             fig.display.show();
         }

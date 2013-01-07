@@ -190,7 +190,9 @@ define(["euclib"], function( euclib ) {
         d.newPoint ( 310, 105.5, "E" );
         d.newPoint ( 330, 170.5, "F" );
         d.newTriangle ( "A", "B", "C" );
+        d.newAngle ( "A", "B", "C" );
         d.newTriangle ( "D", "E", "F" );
+        d.newAngle ( "D", "E", "F" );
 
         return [
             ["AB", 0, blue],
@@ -198,7 +200,9 @@ define(["euclib"], function( euclib ) {
             ["AC", 0],
             ["DE", 0, blue],
             ["EF", 0, yellow],
-            ["DF", 0]
+            ["DF", 0],
+            ["<ABC", 0, red],
+            ["<DEF", 0, red]
         ];
     }); // b1prop3
 
