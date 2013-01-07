@@ -23,14 +23,14 @@ define(["euclib"], function( euclib ) {
     };
 
     Unit.prototype.goTo = function( state ) {
-        var i, thisChild;
-        for(i = 0; i < this.children.length; i++) {
-            thisChild = this.children[i];
+        var i, thisFig;
+        for(i = 0; i < this.figures.length; i++) {
+            thisFig = this.figures[i];
 
-            if(thisChild.state <= state) {
-                thisChild.eucObj.show(thisChild.stroke);
+            if(thisFig.state <= state) {
+                this.drawing.show ( thisFig.id, thisFig.stroke );
             } else {
-                thisChild.eucObj.hide();
+                this.drawing.hide ( thisFig.id );
             }
         }
         this.currentState = state;
@@ -53,13 +53,15 @@ define(["euclib"], function( euclib ) {
     };
 
     Unit.prototype.init = function( d ) {
+        this.drawing = d;
+
         var salient = this.initfn ( d ),
             temp;
-        this.children = [];
+        this.figures = [];
 
-        var prepChild = function ( sal ) {
+        var prepFig = function ( sal ) {
             var ch = {
-                eucObj: d.get ( sal[0] ),
+                id: sal[0],
                 state: sal[1]
             };
 
@@ -73,12 +75,12 @@ define(["euclib"], function( euclib ) {
         // really wish i had map(), but not sure i want to pull in underscore.js...
         this.numStates = 0;
         for ( var i = 0; i < salient.length; i++ ) {
-            temp = prepChild ( salient[i] );
+            temp = prepFig ( salient[i] );
             if ( temp.state > this.numStates ) {
                 this.numStates = temp.state;
             }
 
-            this.children.push ( temp );
+            this.figures.push ( temp );
         }
 
         this.numStates += 1;

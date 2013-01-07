@@ -11,31 +11,13 @@ define( ["raphael"], function( Raphael ) {
 
     /*** Objects ***/
 
-    pub.Point = function( r, x, y, id ) {
-        this.r = r;
+    pub.Point = function( x, y, id ) {
         this.x = x;
         this.y = y;
         this.id = id;
     };
 
-    pub.Point.prototype.show = function( ) {
-        if ( !this.display ) {
-            var attr = {fill: "#000"};
-            this.display = this.r.circle(this.x, this.y, 2).attr(attr);
-        } else {
-            this.display.show();
-        }
-    };
-
-    pub.Point.prototype.hide = function() {
-        if ( this.display ) {
-            this.display.hide();
-        }
-    };
-
-    pub.Segment = function( r, pt1, pt2 ) {
-        this.r = r;
-
+    pub.Segment = function( pt1, pt2 ) {
         // ugly, but some other logic depends on left-most being the first point
         if ( pt1.x <= pt2.x ) {
             this.A = pt1;
@@ -51,30 +33,6 @@ define( ["raphael"], function( Raphael ) {
                                 Math.pow(this.B.y - this.A.y, 2));
     };
 
-    pub.Segment.prototype.show = function( stroke ) {
-        var pt2String = function( pt ) {
-            return pt.x+", "+pt.y;
-        };
-
-        if ( !this.display ) {
-            var path = "M"+pt2String(this.A)+"L"+pt2String(this.B),
-                attr = {
-                    "stroke-width": 2,
-                    "stroke": stroke || "#000"
-                };
-            
-            this.display = this.r.path(path).attr(attr);
-        } else {
-            this.display.show();
-        }
-    };
-
-    pub.Segment.prototype.hide = function() {
-        if ( this.display ) {
-            this.display.hide();
-        }
-    };
-
     // get change from A to B
     pub.Segment.prototype.getChangePerLength = function( segorder ) {
         var dir;
@@ -88,17 +46,8 @@ define( ["raphael"], function( Raphael ) {
                 dir * (this.B.y - this.A.y) / this.length];
     };
 
-    
-    pub.Segment.prototype.showA = function() {
-        this.A.show();
-    };
 
-    pub.Segment.prototype.showB = function() {
-        this.B.show();
-    };
-
-    pub.Circle = function( r, point, rad ) {
-        this.r = r;
+    pub.Circle = function( point, rad ) {
         this.center = point;
         this.cx = point.x;
         this.cy = point.y;
@@ -106,29 +55,7 @@ define( ["raphael"], function( Raphael ) {
     };
 
 
-    pub.Circle.prototype.show = function( stroke ) {
-        if ( !this.display ) {
-            var attr = {
-                "stroke-width": 2,
-                "stroke": stroke || "#000"
-            };
-
-            this.display = this.r.circle(this.cx, this.cy, this.rad).attr(attr);
-        } else {
-            this.display.show();
-        }
-    };
-
-    pub.Circle.prototype.hide = function() {
-        if ( this.display ) {
-            this.display.hide();
-        }
-    };
-
-
-    pub.Triangle = function ( r, pt1, pt2, pt3 ) {
-        this.r = r;
-
+    pub.Triangle = function ( pt1, pt2, pt3 ) {
         // insertion sort!
         var verts = [pt1, pt2, pt3];
         var tmp;
@@ -184,11 +111,10 @@ define( ["raphael"], function( Raphael ) {
                     segBT: segBT,
                     segST: segST
                 });
-
     };
 
 
-    pub.Drawing = function ( r, p ) {
+    pub.Drawing = function (r, p ) {
         this.r = r;
         this.figures = {};
 
@@ -209,7 +135,7 @@ define( ["raphael"], function( Raphael ) {
         if ( this.get ( id ) !== undefined ) {
             throw "Figure name already in use: " + id;
         } else {
-            this.figures[id] = new pub.Point ( this.r, x, y, id );
+            this.figures[id] = new pub.Point ( x, y, id );
             return this.figures[id];
         }
     };
@@ -225,9 +151,8 @@ define( ["raphael"], function( Raphael ) {
         if ( this.get ( id ) !== undefined ) {
             throw "Figure name already in use: " + id;
         } else {
-            var newseg = new pub.Segment ( this.r,
-                                                 this.get ( pt1 ),
-                                                 this.get ( pt2 ) );
+            var newseg = new pub.Segment ( this.get ( pt1 ),
+                                           this.get ( pt2 ) );
             this.figures[id] = newseg;
             this.figures[id.split("").reverse().join("")] = newseg;
 
@@ -239,8 +164,7 @@ define( ["raphael"], function( Raphael ) {
         if ( this.get ( id ) !== undefined ) {
             throw "Figure name already in use: " + id;
         } else {
-            this.figures[id] = new pub.Circle ( this.r,
-                                                this.get ( center ),
+            this.figures[id] = new pub.Circle ( this.get ( center ),
                                                 this.get ( rad ).length );
             return this.figures[id];
         }
@@ -254,8 +178,7 @@ define( ["raphael"], function( Raphael ) {
         if ( this.get ( id ) !== undefined ) {
             throw "Figure name already in use: " + id;
         } else {
-            this.figures[id] = new pub.Triangle ( this.r,
-                                                  this.get ( v1 ),
+            this.figures[id] = new pub.Triangle ( this.get ( v1 ),
                                                   this.get ( v2 ),
                                                   this.get ( v3 ) );
             try {
@@ -289,7 +212,7 @@ define( ["raphael"], function( Raphael ) {
                 Rcirc = circ1;
             }
 
-            var btwn_centers = new pub.Segment ( this.r, Lcirc.center, Rcirc.center );
+            var btwn_centers = new pub.Segment ( Lcirc.center, Rcirc.center );
 
             // x^2 + y^2 = R^2
             // (x-d)^2 + y^2 = r^2
@@ -352,6 +275,52 @@ define( ["raphael"], function( Raphael ) {
             interX = circ.cx + circ.rad * delta[0];
 
         return  this.newPoint ( interX, interY, intpt );
+    };
+
+
+    pub.Drawing.prototype.show = function ( id, stroke ) {
+        var fig = this.get ( id );
+        if ( !fig.display ) {
+            if ( fig instanceof pub.Point ) {
+
+                var attr = {fill: "#000"};
+                fig.display = this.r.circle(fig.x, fig.y, 2).attr(attr);
+
+            } else if ( fig instanceof pub.Segment ) {
+
+                var pt2String = function( pt ) {
+                    return pt.x+", "+pt.y;
+                };
+
+                var path = "M"+pt2String(fig.A)+"L"+pt2String(fig.B),
+                    attr = {
+                        "stroke-width": 2,
+                        "stroke": stroke || "#000"
+                    };
+                
+                fig.display = this.r.path(path).attr(attr);
+
+            } else if (fig instanceof pub.Circle ) {
+
+                var attr = {
+                    "stroke-width": 2,
+                    "stroke": stroke || "#000"
+                };
+
+                fig.display = this.r.circle(fig.cx, fig.cy, fig.rad).attr(attr);
+
+            }
+        } else {
+            fig.display.show();
+        }
+    };
+
+
+    pub.Drawing.prototype.hide = function( id ) {
+        var fig = this.get ( id );
+        if ( fig.display ) {
+            fig.display.hide();
+        }
     };
 
 
